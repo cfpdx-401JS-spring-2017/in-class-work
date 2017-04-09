@@ -6,7 +6,7 @@
 * Be conscious of time and space
     * on-time
     * clean up after yourself
-* Please reacquaint yourself with [code of coduct](https://github.com/codefellows/code-of-conduct)
+* Please re-acquaint yourself with [code of coduct](https://github.com/codefellows/code-of-conduct)
     1. Be kind and respectful
     1. Not creating obtacles to people being able to do their best work
     1. Overcome the bad habits of socialization. On _you_ to prevent #2.
@@ -29,7 +29,7 @@
 
 [ON Becoming a "professional" software development](https://speakerdeck.com/martypdx/professional-software-development)
 
-Keep asking questions about what this means
+Keep asking questions about what this means!
 
 ## In-Class Work
 
@@ -38,14 +38,28 @@ All code and goodies from Instruction are available in the [**in-class-work** re
 ## Install Node and Submit an Assignment
 
 * Make sure you have node.js > `6.x.x`
+* [Node.JS Docs](https://nodejs.org/dist/latest-v7.x/docs/api/)
 
 ### How to submit an assignment
 
 [Follow along as we submit our first assignment](https://github.com/cfpdx-401JS-spring-2017/submit-401-way)
 
-### Distributed Systems
+### In-Class Greeting App
 
-#### Questions to Ponder...
+1. Add more feedback
+    * `eslint` 
+        * [config](http://eslint.org/docs/user-guide/configuring)
+        * [recommended](http://eslint.org/docs/rules/) rules
+    * `.gitignore`
+1. Modularize
+1. Test
+1. Intergration Test
+1. Submit
+1. Reuse
+
+## Distributed Systems
+
+### Questions to Ponder...
 
 * What is a(n)... 
   > ...app?
@@ -56,9 +70,19 @@ All code and goodies from Instruction are available in the [**in-class-work** re
 * What were you calling when you made an AJAX "call"?
 * What is a server?
 
-#### More...
+### Key Points
 
-#### Exercise
+* A process is "unit of execution" controlled by the Operating System (OS)
+    * CPU time
+    * Memory space
+* Communication between processes
+    * `stdin`/`stdout`/`stderr`
+    * `TCP` - Networking FTW!
+* Distributed Systems
+    * The total set of processes involved in the overall "system"
+    * Client, Server [, Database]
+
+### Exercise
 
 NodeJS TCP Telephone Game
 
@@ -77,6 +101,4 @@ NodeJS TCP Telephone Game
     2. Creates a TCP client connection to the next IP address
     1. When data is received, it adds '|<your-name>` and forwards to next IP address
 
-Resources:
-    * [Node.JS docs](https://nodejs.org/dist/latest-v7.x/docs/api/)
 
