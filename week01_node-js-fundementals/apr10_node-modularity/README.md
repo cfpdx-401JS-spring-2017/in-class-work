@@ -27,7 +27,13 @@
 
 ## Professionalism
 
-[ON Becoming a "professional" software development](https://speakerdeck.com/martypdx/professional-software-development)
+* slides: Professional Software Development
+
+For week 1:
+
+1. Modularity - SRP "One Concern"
+1. [Naming](http://arlobelshee.com/good-naming-is-a-process-not-a-single-step/)
+1. (Literal) Code Cleanliness (indentation, formating, no scrappy bits o' commented out stuff)
 
 Keep asking questions about what this means!
 

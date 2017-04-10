@@ -4,7 +4,7 @@ const greet = require('./greet');
 
 const server = http.createServer((req, res) => {
     const query = url.parse(req.url, true).query;
-    const greeting = greet(query); 
+    const greeting = greet(query.name); 
     res.end(greeting);
 });
 
