@@ -38,6 +38,8 @@ describe('variables', () => {
             var obj = { myProperty: 'Foo' };
             
             function changeName(thingToChange) {
+                // this would change the object ref
+                // thingToChange = { myProperty: 'Bar' };
                 thingToChange.myProperty = 'Bar';
             }
 
