@@ -1,5 +1,5 @@
-const a = require('./a');
-const b = require('./b');
+require('./a');
+require('./b');
 const figlet = require('figlet');
 
 figlet('Hello World!!', function(err, data) {
@@ -8,5 +8,5 @@ figlet('Hello World!!', function(err, data) {
         console.dir(err);
         return;
     }
-    console.log(data)
+    console.log(data);
 });
