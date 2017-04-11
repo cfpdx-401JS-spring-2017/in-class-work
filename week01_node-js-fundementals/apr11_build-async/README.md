@@ -7,11 +7,6 @@
 * time to timeOfDay
 * ?
 
-## Today's Learning Objectives
-
-* Use npm and project organization to structure your projects
-and automate build tasks
-
 ## Learning Objectives
 * Install and track third party module dependencies 
 _using `npm` and the project `package.json` file_.
@@ -21,7 +16,8 @@ _using `npm` and the project `package.json` file_.
     * running unit tests
         * once
         * when a `.js` file changes.
-* Write and use asynchronous functions
+* Have a working model of asynchronous programming in NodeJS
+* Write and utilize asychronous functions effectively
 
 ## Agenda
 
@@ -50,9 +46,9 @@ _using `npm` and the project `package.json` file_.
             * local `node_modules`
             * global `node_modules`
 
-### ES6 Modules
+#### ES6 Modules
 
-We'll be using CJS for first couple of weeks
+We'll be using CJS for first couple of weeks. Then switch to ES6 Modules
 
 ### `npm`
 * Package Management
@@ -66,7 +62,8 @@ We'll be using CJS for first couple of weeks
         * `--save-dev` or `-D`
 * Publishing
 
-## Build System
+### Build System
+
 * Why?
     * Developer Sanity
     * Consistency of Process
@@ -78,7 +75,7 @@ We'll be using CJS for first couple of weeks
 * Project Organization
     * `./lib` folder
 
-## Async
+## Asynchronous Programing in Node.JS
 
 ### "By Ref"
 
@@ -104,14 +101,53 @@ We'll be using CJS for first couple of weeks
 
 ### Node.JS Architecture
 
-* V8 and C++
-* Event Loop
-    * Single threaded!
-    * I/O
-    * `setTimeout`
+* What is it?
+* Node Event Loop
+    * Basic node architecture 101
+    * v8 + event-loop + os-lib
+    * Thread - actual "thread of execuation"
+    * Event loop explained
+    * JavaScript single threaded event model
+* Demo: `event-loop.js`
 
-## Workflows
+### Passing functions in javascript
 
-* Sequential
-* Parallel
+* Closures
+    * variable is stored
+    * Demo: Show function in debugger
+    * Asynchronous: variable is a pointer to a values
+        * Demo: `for` loop with `setTimeout`
 
+* Types of Functions
+    * function definition
+    * function expression
+    * (named function)
+    * [arrows functions](https://github.com/martypdx/workshop-promises-fat-arrows/blob/master/fat-arrows.md)
+
+* [Three function passing patterns](https://github.com/martypdx/workshop-promises-fat-arrows/blob/master/async-js-patterns.md) 
+* Async pattern can use:
+    * callbacks
+    * promises
+    * async/await ([ES2017](https://github.com/tc39/proposals/blob/master/finished-proposals.md))
+* How do we
+	* return values?
+	* Propagate errors?
+* Node callback pattern `callback(err, result)`
+* Some hardfast rules:
+    1. You can't create asynchronicity with just js
+    2. If your building functionality ontop of asychronous API's, 
+    then your library must be asynchronous!
+* Demo
+	* Mocha `done`
+		* test parameter
+		* Tests function.length
+		* if > 0, test is async
+		* calling done with any non-null argument is failure (matches node callback signature)
+	* and node `fs` module
+	* Demo: Test drive "copy dir"
+    * Mocha `before` and friends
+    * Demo: Write `index.txt`
+* Orchestration?
+	* Sequential
+	* Parallel
+		* Async order is "completion" based
