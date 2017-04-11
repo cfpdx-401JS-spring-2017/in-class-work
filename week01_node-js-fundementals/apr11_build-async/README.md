@@ -77,14 +77,6 @@ We'll be using CJS for first couple of weeks. Then switch to ES6 Modules
 
 ## Asynchronous Programing in Node.JS
 
-### "By Ref"
-
-* Variable table
-* Values are always copied to new variables
-* Parameter arguments act like variables in this regard
-* Primitive values are stored in the table (pretend on strings)
-* Objects are stored on the heap, the reference (address) is what is in the variable table
-
 ### Functions
 
 * In JavaScript, function are (literally) objects and can be passed around and shared.
@@ -112,23 +104,6 @@ We'll be using CJS for first couple of weeks. Then switch to ES6 Modules
 
 ### Passing functions in javascript
 
-* Closures
-    * variable is stored
-    * Demo: Show function in debugger
-    * Asynchronous: variable is a pointer to a values
-        * Demo: `for` loop with `setTimeout`
-
-* Types of Functions
-    * function definition
-    * function expression
-    * (named function)
-    * [arrows functions](https://github.com/martypdx/workshop-promises-fat-arrows/blob/master/fat-arrows.md)
-
-* [Three function passing patterns](https://github.com/martypdx/workshop-promises-fat-arrows/blob/master/async-js-patterns.md) 
-* Async pattern can use:
-    * callbacks
-    * promises
-    * async/await ([ES2017](https://github.com/tc39/proposals/blob/master/finished-proposals.md))
 * How do we
 	* return values?
 	* Propagate errors?
