@@ -5,7 +5,7 @@ request('http://www.google.com', function(err, res, body) {
     console.log('google:', body.slice(0, 10));
 });
 
-fs.readFile('package.json', 'utf-8', function(err, file) {
+fs.readFile('README.md', 'utf-8', function(err, file) {
     console.log('file:', file.slice(0, 10))
 });
 
