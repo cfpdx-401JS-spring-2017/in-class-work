@@ -8,10 +8,14 @@
     "figlet": "^1.2.0"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "npm run lint",
+    "test": "mocha",
+    "test:watch": "npm test -- -w",
+    "lint": "eslint ." 
   },
   "author": "Marty Nelson <marty@martypdx.com>",
   "license": "ISC"
