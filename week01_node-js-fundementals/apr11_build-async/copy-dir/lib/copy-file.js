@@ -8,6 +8,6 @@ function copyFile(sourcePath, destPath, callback) {
             callback();
         });
     });
-};
+}
 
 module.exports = copyFile;
