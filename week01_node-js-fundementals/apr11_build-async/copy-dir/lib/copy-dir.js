@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
+const copyFile = require('./copy-file');
 
 function copyDir(sourceDir, destDir, callback) {
+
+    // TODO: make mkdir and readdir parallel
 
     //fs.mkdir
     fs.mkdir(destDir, err => {
@@ -16,19 +19,13 @@ function copyDir(sourceDir, destDir, callback) {
                 const sourcePath = path.join(sourceDir, file);
                 const destPath = path.join(destDir, file);
 
-                //fs.readFile
-                fs.readFile(sourcePath, (err, data) => {
-                    if(err) return callback(err);
-                    //fs.writeFile
-                    fs.writeFile(destPath, data, err => {
-                        if(err) return callback(err);
-                        // done with this file, but are we done with 
-                        // ALL the files?
-                        count--;
-                        if(count === 0) {
-                            callback();
-                        }
-                    });
+                //copies file
+                copyFile(sourcePath, destPath, err => {
+                    if (err) return callback(err);
+                    count--;
+                    if (count === 0) {
+                        callback();
+                    }
                 });
             });
         });
