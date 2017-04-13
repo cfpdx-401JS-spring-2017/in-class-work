@@ -1,8 +1,8 @@
 {
-  "name": "copy-dir",
+  "name": "crappy-copy-dir",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/copy-dir.js",
   "scripts": {
     "test": "mocha",
     "test:watch": "npm test -- -w"

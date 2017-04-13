@@ -1,0 +1,14 @@
+{
+  "name": "use-copy-dir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marty Nelson <marty@martypdx.com>",
+  "license": "ISC",
+  "dependencies": {
+    "crappy-copy-dir": "^1.0.0"
+  }
+}

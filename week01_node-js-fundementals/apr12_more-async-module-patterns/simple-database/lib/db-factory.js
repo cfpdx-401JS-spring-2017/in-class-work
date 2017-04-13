@@ -10,6 +10,12 @@ function dbFactory(rootDir) {
         },
         save(table, objectToSave, callback) {
 
+        },
+        update(table, objectToUpdate, callback) {
+            const id = objectToUpdate._id;
+            if(!id) {
+                return callback(new Error('some message'));
+            }
         }
     };
 }

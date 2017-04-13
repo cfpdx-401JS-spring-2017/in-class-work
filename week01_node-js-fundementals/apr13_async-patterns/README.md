@@ -29,3 +29,17 @@ someAsyncFunction(param, err => {
 someAsyncFunction(param, cb);
 
 ```
+
+* Publish on npm
+
+1. Make a npm account (I like to use same username as github)
+    * After you create run:
+    ```
+    > npm adduser
+    ```
+    and follow prompts
+1. Make sure your package.json:
+    1. Propername (kebob-case)
+    2. A semver version
+    3. `main` property to entry point (what should be the module used
+    when somebody requires your package)
