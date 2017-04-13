@@ -42,3 +42,6 @@ complexity functions.
         * [Big O Cheat Sheet](http://bigocheatsheet.com/)
 * Exercise:
     * (both partners) rewrite findDups to be more efficient `O(n*logn)`
+* Demo:
+    * `O-n2.js`
+    * `O-n-logn.js`
