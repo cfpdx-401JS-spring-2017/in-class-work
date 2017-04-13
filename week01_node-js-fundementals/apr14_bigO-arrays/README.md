@@ -32,6 +32,13 @@ complexity functions.
 * Data Structures
     * arrays
     * dictionaries
+* Exercises:
+    1. Write a function that takes an array and returns
+    `true` if there are duplicates, otherwise `false`
+    1. Write a function that takes a string sentence and returns
+    an object (dictionary) with a property for each unique word, and whose value is the count of that word in the sentence.
 * Algorythms
     * Big O
         * [Big O Cheat Sheet](http://bigocheatsheet.com/)
+* Exercise:
+    * (both partners) rewrite findDups to be more efficient `O(n*logn)`
