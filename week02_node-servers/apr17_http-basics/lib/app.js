@@ -1,10 +1,19 @@
 const parseUrl = require('url').parse;
 const fs = require('fs');
 const path = require('path');
+const cowsay = require('cowsay');
 
 function hello(req, res) {
     const name = req.query.name || 'world';
-    res.end(`<h4>hello ${name}</h4>`);
+    let greeting = `hello ${name}`;
+    if(req.query.format === 'cowsay') {
+        greeting = '<pre>' + cowsay.say({
+            text : greeting,
+            e : "oO",
+            T : "U "
+        }) + '</pre>';
+    }
+    res.end(greeting);
 }
 
 function goodbye(req, res) {
