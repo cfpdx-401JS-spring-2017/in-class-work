@@ -32,4 +32,12 @@ describe('app', () => {
                 done();
             });
     });
+
+    it('gets index on root /', done => {
+        request.get('/')
+            .end((err, res) => {
+                assert.match(res.text, /Welcome to our server/);
+                done();
+            })
+    })
 });

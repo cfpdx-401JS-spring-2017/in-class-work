@@ -1,15 +1,27 @@
 const parseUrl = require('url').parse;
+const fs = require('fs');
+const path = require('path');
 
 function hello(req, res) {
     const name = req.query.name || 'world';
     res.end(`<h4>hello ${name}</h4>`);
 }
 
-function goodbye(req, res, url) {
+function goodbye(req, res) {
     res.end('<h5>goodbye world</h5>');
 }
 
+function getIndex(req, res) {
+    const filePath = path.join(__dirname, 'index.html');
+    fs.readFile(filePath, (err, data) => {
+        // TODO: deal with err...
+        res.end(data);
+    });
+}
+
 const routes = {
+    '/': getIndex,
+    '/index.html': getIndex,
     '/hello': hello,
     '/goodbye': goodbye
 };
