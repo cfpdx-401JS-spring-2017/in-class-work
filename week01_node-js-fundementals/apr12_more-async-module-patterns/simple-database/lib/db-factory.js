@@ -1,4 +1,3 @@
-
 function dbFactory(rootDir) {
 
     return {
