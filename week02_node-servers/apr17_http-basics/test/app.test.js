@@ -12,7 +12,7 @@ describe('app', () => {
     it('says hello world', done => {
         request.get('/hello')
             .end((err, res) => {
-                assert.equal(res.text, 'hello world');
+                assert.equal(res.text, '<h4>hello world</h4>');
                 done();
             });
     });
@@ -20,7 +20,15 @@ describe('app', () => {
     it('says hello world', done => {
         request.get('/goodbye')
             .end((err, res) => {
-                assert.equal(res.text, 'goodbye world');
+                assert.equal(res.text, '<h5>goodbye world</h5>');
+                done();
+            });
+    });
+
+    it('says hello marty when name passed as query param', done => {
+        request.get('/goodbye')
+            .end((err, res) => {
+                assert.equal(res.text, '<h5>goodbye world</h5>');
                 done();
             });
     });
