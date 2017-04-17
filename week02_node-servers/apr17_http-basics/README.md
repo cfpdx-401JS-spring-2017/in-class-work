@@ -9,12 +9,13 @@
 ## Today's Learning Objectives
 
 1. Create HTTP server using Node.js
-2. Differentiate HTTP requests based on path (url) and verb (http) and other request factors
+2. Differentiate HTTP requests based on path (`url`) and verb (`http`) and other request factors (`query`, `content-type`)
 3. E2E servers using Mocha (and chai-http for HTTP)
 
 ## New Tool
 
-[ChaiJS](http://chaijs.com/)
+* [ChaiJS](http://chaijs.com/)
+* [chai-http](http://chaijs.com/plugins/chai-http/)
 
 ### E2E Testing Servers
 

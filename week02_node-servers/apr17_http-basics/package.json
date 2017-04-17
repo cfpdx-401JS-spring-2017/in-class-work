@@ -1,0 +1,21 @@
+{
+  "name": "apr17_http-basics",
+  "version": "1.0.0",
+  "description": "<img src=\"https://cloud.githubusercontent.com/assets/478864/22186847/68223ce6-e0b1-11e6-8a62-0e3edc96725e.png\" width=30> HTTP and REST ===",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon server.js"
+  },
+  "author": "Marty Nelson <marty@martypdx.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  }
+}
