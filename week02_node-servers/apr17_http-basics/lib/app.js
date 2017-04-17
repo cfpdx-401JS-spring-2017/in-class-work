@@ -1,3 +1,4 @@
+const parseUrl = require('url').parse;
 
 function hello(req, res) {
     res.end('<h4>hello world</h4>');
@@ -19,8 +20,12 @@ function notFound(req, res) {
 }
 
 function app(req, res) {
+    console.log(req.method, req.url);
+    const url = parseUrl(req.url, true);
+    console.log(url);
+
     res.setHeader('Content-Type', 'text/html');
-    const route = routes[req.url] || notFound;
+    const route = routes[url.pathname] || notFound;
     route(req, res);
 }
 
