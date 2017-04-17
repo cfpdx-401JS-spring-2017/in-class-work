@@ -10,10 +10,18 @@ describe('app', () => {
     const request = chai.request(app);
 
     it('says hello world', done => {
-        request.get('/')
+        request.get('/hello')
             .end((err, res) => {
                 assert.equal(res.text, 'hello world');
                 done();
-            })
+            });
+    });
+
+    it('says hello world', done => {
+        request.get('/goodbye')
+            .end((err, res) => {
+                assert.equal(res.text, 'goodbye world');
+                done();
+            });
     });
 });

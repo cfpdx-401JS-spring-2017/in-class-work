@@ -31,13 +31,13 @@
 ### HTTP
 
 * [ Http Protocol explained ](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
-* Url
+* Path (nouns):
 	* [parts of url](http://bl.ocks.org/abernier/3070589)
 	* protocol
 	* hostname ( host + port )
 	* resource path
 	* query
-* Verbs: 
+* Method (verbs): 
 	* GET, POST, PUT, DELETE, PATCH
 	* plus more ...
 * REST
