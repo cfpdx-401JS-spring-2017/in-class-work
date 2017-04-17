@@ -1,10 +1,10 @@
 
 function hello(req, res) {
-    res.end('hello world');
+    res.end('<h4>hello world</h4>');
 }
 
 function goodbye(req, res) {
-    res.end('goodbye world');
+    res.end('<h5>goodbye world</h5>');
 }
 
 const routes = {
@@ -19,7 +19,7 @@ function notFound(req, res) {
 }
 
 function app(req, res) {
-    console.log(req.method, req.url);
+    res.setHeader('Content-Type', 'text/html');
     const route = routes[req.url] || notFound;
     route(req, res);
 }
