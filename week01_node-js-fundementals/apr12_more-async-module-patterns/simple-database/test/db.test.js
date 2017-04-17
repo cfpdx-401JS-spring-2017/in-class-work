@@ -45,6 +45,46 @@ describe('simple database', () => {
         });
     });
 
+    it('gets all with three cats', done => {
+        saveCat(felix, (err, cat) => {
+            if(err) return done(err);
+
+            saveCat(garfield, (err, cat) => {
+                if(err) return done(err);
+                
+                db.getAll('cats', (err, cats) => {
+                    assert.equal(cats.length, 3);
+                    // check for each cat
+                    done();
+                });
+            });
+        });
+    });
+
+    it('remove cat', done => {
+        db.remove('cats', garfield._id, (err, result) => {
+            if(err) return done(err);
+            assert.deepEqual(result, { removed: true });
+            done();
+        });
+    });
+
+    it('remove returns false if object does not exist', done => {
+        db.remove('cats', garfield._id, (err, result) => {
+            if(err) return done(err);
+            assert.deepEqual(result, { removed: false });
+            done();
+        });
+    });
+
+    it('get all return 2 cats', done => {
+        db.getAll('cats', (err, cats) => {
+            assert.equal(cats.length, 2);
+            // check for each cat
+            done();
+        });
+    });
+
 
 
 });
