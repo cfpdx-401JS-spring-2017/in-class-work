@@ -12,27 +12,16 @@ const routes = {
     '/goodbye': goodbye
 };
 
+function notFound(req, res) {
+    res.statusCode = 404;
+    res.statusMessage = `${req.url} not found`;
+    res.end();
+}
+
 function app(req, res) {
     console.log(req.method, req.url);
     const route = routes[req.url] || notFound;
     route(req, res);
-}
-
-module.exports = app;
-
-
-
-function app(req, res) {
-    console.log(req.method, req.url);
-    const route = routes[req.url];
-    if(!route) {
-        res.statusCode = 404;
-        res.statusMessage = `${req.url} not found`;
-        res.end();
-    }
-    else {
-        route(req, res);
-    }
 }
 
 module.exports = app;
