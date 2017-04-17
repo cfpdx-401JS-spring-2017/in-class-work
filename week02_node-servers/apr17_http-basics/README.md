@@ -65,6 +65,7 @@ Represent refinements or modifications to how the request should be processed:
 * `?limit=100&page=3` - return results 201-300 
 * `?format=xml` - control results format (might see on third party API)
 * `?access_token=123edfdo3o3o23` - provide a token for authentication
+* `?name=Smith` - provide query parameter directly
 * `?query={ name: 'Smith' }` - provide query parameters that filter the results
 
 Check out built-in module `const url = require('url');` Which includes query methods, but

@@ -26,9 +26,9 @@ describe('app', () => {
     });
 
     it('says hello marty when name passed as query param', done => {
-        request.get('/goodbye')
+        request.get('/hello?name=marty')
             .end((err, res) => {
-                assert.equal(res.text, '<h5>goodbye world</h5>');
+                assert.equal(res.text, '<h4>hello marty</h4>');
                 done();
             });
     });

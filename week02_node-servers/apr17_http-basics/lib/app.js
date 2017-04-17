@@ -1,10 +1,11 @@
 const parseUrl = require('url').parse;
 
 function hello(req, res) {
-    res.end('<h4>hello world</h4>');
+    const name = req.query.name || 'world';
+    res.end(`<h4>hello ${name}</h4>`);
 }
 
-function goodbye(req, res) {
+function goodbye(req, res, url) {
     res.end('<h5>goodbye world</h5>');
 }
 
@@ -22,7 +23,7 @@ function notFound(req, res) {
 function app(req, res) {
     console.log(req.method, req.url);
     const url = parseUrl(req.url, true);
-    console.log(url);
+    req.query = url.query;
 
     res.setHeader('Content-Type', 'text/html');
     const route = routes[url.pathname] || notFound;
