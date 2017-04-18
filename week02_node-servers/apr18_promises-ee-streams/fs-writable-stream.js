@@ -6,4 +6,4 @@ stream.write('hello');
 stream.write('world\n');
 stream.write('it is a new day,');
 stream.write('so go have fun');
-stream.end();
+stream.end('is this allowed?');
