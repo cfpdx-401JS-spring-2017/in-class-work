@@ -8,17 +8,11 @@ const server = http.createServer((req, res) => {
 
     const url = parseUrl(req.url, true);
     
-    if (url.pathname === '/' || url.pathname === '/index.html') {
+    if (url.pathname === '/' || url.pathname === '/index.html' ) {
         const stream = fs.createReadStream('index.html');
         res.setHeader('Content-Type', 'text/html');
 
-        stream.on('data', data => {
-            res.write(data);
-        });
-
-        stream.on('end', () => {
-            res.end();
-        });
+        stream.pipe(res);
 
         return;
     }
