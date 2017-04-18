@@ -1,0 +1,21 @@
+{
+  "name": "crappy-copy-dir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/copy-dir.js",
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "npm test -- -w"
+  },
+  "author": "Marty Nelson <marty@martypdx.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "fs-promise": "^2.0.2"
+  }
+}
