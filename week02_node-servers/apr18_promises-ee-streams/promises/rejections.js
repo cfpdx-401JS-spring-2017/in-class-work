@@ -13,9 +13,7 @@ function asyncFn(name) {
 
 asyncFn('ivy')
     .then(
-        name => {
-            console.log('success!', name);
-        },
+        null,
         err => { 
             console.log('fail!', err);
         }    
