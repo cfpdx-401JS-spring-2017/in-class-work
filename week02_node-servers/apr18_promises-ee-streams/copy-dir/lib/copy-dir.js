@@ -9,11 +9,13 @@ function copyDir(sourceDir, destDir) {
     ])
         .then(result => {
             const files = result[0];
+            
             const copyPromises = files.map(file => {
                 const sourcePath = path.join(sourceDir, file);
                 const destPath = path.join(destDir, file);
                 return copyFile(sourcePath, destPath);
             });
+
             return Promise.all(copyPromises);
         });
 }
