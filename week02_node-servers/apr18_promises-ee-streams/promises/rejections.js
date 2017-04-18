@@ -11,10 +11,20 @@ function asyncFn(name) {
     });
 }
 
-asyncFn('ivy')
-    .then(
-        null,
-        err => { 
-            console.log('fail!', err);
-        }    
-    )
+asyncFn('marty')
+    .then(name => {
+        console.log('success!', name);
+        return name.length;
+    })
+    .then(length => {
+        if (length === 3) {
+            throw 'length should not be 3';
+        }
+        return length * 2;
+    })
+    .catch(err => {
+        return 12;
+    })
+    .then(value => {
+        console.log('final value', value);
+    });
