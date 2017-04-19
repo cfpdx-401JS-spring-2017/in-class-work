@@ -3,15 +3,9 @@
 
 ## Questions and Issues?
 
-### Terms
-* module - small piece of functionality, in JavaScript, a single module (file)
-* library - overall package of functionality (npm)
-    * meant to be used by other code
-    * toolbox of functionality via API
-* framework - overall package of functionality (npm)
-    * meant to be a "way" to achieve a certain goal
-    * API is way to build things
-    * Often depends on using core components or pieces of that framework
+* Question about pop-quiz?
+* ?
+
 
 ## Learning Objectives
 
@@ -35,3 +29,13 @@
     * I/O methods
     * Beware of the number constructor
     * Binary Data
+
+### Lab - Terms
+* module - small piece of functionality, in JavaScript, a single module (file)
+* library - overall package of functionality (npm)
+    * meant to be used by other code
+    * toolbox of functionality via API
+* framework - overall package of functionality (npm)
+    * meant to be a "way" to achieve a certain goal
+    * API is way to build things
+    * Often depends on using core components or pieces of that framework
