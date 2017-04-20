@@ -7,14 +7,23 @@ mongo.connect(url)
     .then(db => {
         console.log('connected to mongo!', db.databaseName);
         const unicorns = db.collection('unicorns');
-        return unicorns.find({
-            loves: 'carrot',
-            weight: { $lt: 500 }
-        });
-    })
-    .then(query => query.toArray())
-    .then(unicorns => {
-        console.log(unicorns);
+        return unicorns
+            .find({
+                loves: 'carrot',
+                weight: { $lt: 500 }
+            })
+            .toArray()
+            .then(unicorns => {
+                console.log(unicorns);
+            })
+            .then(() => {
+                return unicorns.insert({
+                    name: 'fakey'
+                });
+            })
+            .then(savedUnicorn => { 
+                console.log(savedUnicorn);
+            });
     })
     .catch(err => {
         console.log('ERROR!', err.message);
