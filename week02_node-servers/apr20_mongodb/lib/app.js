@@ -10,6 +10,7 @@ function app(req, res) {
     console.log(req.method, req.url);
     const url = parsePath(req.url);
     req.query = url.query;
+    req.params = url.params;
 
     res.setHeader('Content-Type', 'application/json');
     const route = routes[url.route] || notFound;

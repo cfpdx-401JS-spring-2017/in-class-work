@@ -6,6 +6,8 @@ module.exports = function parsePath(path) {
     return {
         route: parts[0],
         query: parsed.query,
-        name: parts[1]
+        params: {
+            id: parts[1]
+        }
     };
 };

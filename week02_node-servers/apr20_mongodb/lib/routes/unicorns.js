@@ -1,5 +1,6 @@
 const connect = require('../connect');
 const bodyParser = require('../helpers/bodyParser');
+const ObjectId = require('mongodb').ObjectId;
 
 function unicorns(req, res) {
     const unicorns = connect.db.collection('unicorns');
@@ -17,6 +18,13 @@ function unicorns(req, res) {
             });
     }  
     else {
+        if (req.params.id) { 
+            unicorns.findOne({ _id: ObjectId(req.params.id) })
+                .then(unicorns => {
+                    const serialized = JSON.stringify(unicorns);
+                    res.end(serialized);
+                });
+        }
         unicorns.find(req.query).toArray().then(unicorns => {
             const serialized = JSON.stringify(unicorns);
             res.end(serialized);
