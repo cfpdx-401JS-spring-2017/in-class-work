@@ -1,31 +1,17 @@
-const parseUrl = require('url').parse;
-const fs = require('fs');
-const path = require('path');
-const notFound = require('./notFound');
-
-const indexFile = path.join(__dirname, 'index.html');
-
-function getIndex(req, res) {
-    fs.createReadStream(indexFile).pipe(res);
-}
-
-function hello(req, res) {
-    res.end('hello world');
-}
+const parsePath = require('./helpers/parsePath');
+const notFound = require('./helpers/notFound');
+const unicorns = require('./unicorns');
 
 const routes = {
-    '/': getIndex,
-    '/index.html': getIndex,
-    '/hello': hello
+    'unicorns': unicorns
 };
 
 function app(req, res) {
     console.log(req.method, req.url);
-    const url = parseUrl(req.url, true);
-    req.query = url.query;
+    const url = parsePath(req.url);
 
-    res.setHeader('Content-Type', 'text/html');
-    const route = routes[url.pathname] || notFound;
+    res.setHeader('Content-Type', 'application/json');
+    const route = routes[url.route] || notFound;
     route(req, res);
 }
 
