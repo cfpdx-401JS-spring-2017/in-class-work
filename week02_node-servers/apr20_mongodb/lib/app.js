@@ -1,6 +1,6 @@
 const parsePath = require('./helpers/parsePath');
 const notFound = require('./helpers/notFound');
-const unicorns = require('./unicorns');
+const unicorns = require('./routes/unicorns');
 
 const routes = {
     'unicorns': unicorns
@@ -9,6 +9,7 @@ const routes = {
 function app(req, res) {
     console.log(req.method, req.url);
     const url = parsePath(req.url);
+    req.query = url.query;
 
     res.setHeader('Content-Type', 'application/json');
     const route = routes[url.route] || notFound;

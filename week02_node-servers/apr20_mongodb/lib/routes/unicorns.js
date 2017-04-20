@@ -1,5 +1,5 @@
-const connect = require('./connect');
-const bodyParser = require('./helpers/bodyParser');
+const connect = require('../connect');
+const bodyParser = require('../helpers/bodyParser');
 
 function unicorns(req, res) {
     const unicorns = connect.db.collection('unicorns');
@@ -17,7 +17,7 @@ function unicorns(req, res) {
             });
     }  
     else {
-        unicorns.find().toArray().then(unicorns => {
+        unicorns.find(req.query).toArray().then(unicorns => {
             const serialized = JSON.stringify(unicorns);
             res.end(serialized);
         });
