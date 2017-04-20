@@ -10,8 +10,9 @@ mongo.connect(url)
         return unicorns.find({
             loves: 'carrot',
             weight: { $lt: 500 }
-        }).toArray();
+        });
     })
+    .then(query => query.toArray())
     .then(unicorns => {
         console.log(unicorns);
     })
