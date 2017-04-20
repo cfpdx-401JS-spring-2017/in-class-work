@@ -10,10 +10,10 @@ mongo.connect(url)
         return unicorns.find({
             loves: 'carrot',
             weight: { $lt: 500 }
-        }).toArray()
-            .then(unicorns => {
-                console.log(unicorns);
-            });
+        }).toArray();
+    })
+    .then(unicorns => {
+        console.log(unicorns);
     })
     .catch(err => {
         console.log('ERROR!', err.message);
