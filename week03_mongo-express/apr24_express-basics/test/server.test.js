@@ -36,24 +36,34 @@ describe('unicorns REST api', () => {
   before(() => connection.db.dropDatabase());
   after(() => connection.close());
 
+  function saveUnicorn(unicorn) {
+    return request
+      .post('/unicorns')
+      .send(unicorn);
+  }
+
   const foonicorn = {
     name: 'foonicorn',
     type: 'unicorn',
   };
 
-  it.only('saves a unicorn', () => {
-    return request
-      .post('/unicorns')
-      .send(foonicorn)
+  it('saves a unicorn', () => {
+    return saveUnicorn(foonicorn)
       .then(res => res.body)
       .then(savedUnicorn => {
         assert.isOk(savedUnicorn._id);
+        foonicorn._id = savedUnicorn._id;
+        assert.deepEqual(savedUnicorn, foonicorn);
       });
   });
 
   it('GETs unicorn if it exists', () => {
     return request
-      .get('/unicorns');
+      .get(`/unicorns/${foonicorn._id}`)
+      .then(res => res.body)
+      .then(unicorn => assert.deepEqual(unicorn, foonicorn));
+
+
   });
 
   it('returns 404 if unicorn does not exist', () => {

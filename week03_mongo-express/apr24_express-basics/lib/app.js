@@ -20,8 +20,6 @@ app.get('/unicorns/:id', (req, res) => {
   connection.db.collection('unicorns')
     .findOne({ _id })
     .then(unicorn => res.send(unicorn));
-
-  // res.send(JSON.stringify({name: 'rainbow unicorn'}));
 });
 
 app.post('/unicorns', (req, res) => {
