@@ -19,7 +19,14 @@ app.get('/unicorns/:id', (req, res) => {
   const _id = new ObjectId(req.params.id);
   connection.db.collection('unicorns')
     .findOne({ _id })
-    .then(unicorn => res.send(unicorn));
+    .then(unicorn => {
+      if(!unicorn) {
+        res.status(404).send({error: 'resource not found'});
+      } else {
+        console.log(unicorn);
+        res.send(unicorn);
+      }
+    });
 });
 
 app.post('/unicorns', (req, res) => {

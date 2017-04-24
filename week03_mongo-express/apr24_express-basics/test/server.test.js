@@ -67,6 +67,15 @@ describe('unicorns REST api', () => {
   });
 
   it('returns 404 if unicorn does not exist', () => {
+    return request
+      .get('/unicorns/doesnotexist')
+      .then(
+        () => {throw new Error('successful status code not expected');},
+        res => {
+          assert.equal(res.status, 404);
+          assert.isOk(res.response.body.error);
 
+        }
+      );
   });
 });
