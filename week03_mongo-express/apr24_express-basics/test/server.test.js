@@ -13,7 +13,15 @@ describe('GET /', () => {
 
     return request
       .get('/')
-      .then(res => res.text)
+      .then(res => (res.text))
       .then(text => assert.equal(text, 'hello world'));
+  });
+
+  it('serves images out of public', () => {
+    return request
+      .get('/panda.jpg')
+      .then(res => {
+        return assert.equal(res.statusCode, 200);
+      });
   });
 });
