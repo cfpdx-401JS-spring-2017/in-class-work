@@ -1,16 +1,22 @@
 const mongo = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/unicorns';
 
 const connect = {
-  db: null
-};
+  db: null,
 
-mongo.connect(url)
-  .then(db => {
-    connect.db = db;
-  })
-  .catch(err => {
-    console.log('MONGO ERROR', err);
-  });
+  connect(dbUri) {
+    if (this.db) return Promise.reject('Already connected to db');
+    return mongo.connect(dbUri)
+      .then(db => this.db = db);
+  },
+
+  close() {
+    if (!this.db) return Promise.resolve();
+    return this.db.close()
+      .then(result => {
+        this.db = null;
+        return result;
+      });
+  }
+};
 
 module.exports = connect;

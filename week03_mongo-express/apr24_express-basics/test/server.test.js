@@ -4,10 +4,12 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const app = require('../lib/app');
+const connection = require('../lib/connect');
+
+const request = chai.request(app);
 
 describe('GET /', () => {
 
-  const request = chai.request(app);
 
   it('says hello world', () => {
 
@@ -23,5 +25,27 @@ describe('GET /', () => {
       .then(res => {
         return assert.equal(res.statusCode, 200);
       });
+  });
+});
+
+describe('unicorns REST api', () => {
+
+  const DB_URI = 'mongodb://localhost:27017/unicorns-test';
+  
+  before(() => connection.connect(DB_URI));
+  before(() => connection.db.dropDatabase());
+  after(() => connection.close());
+
+  it('saves a unicorn', () => {
+    
+  });
+
+  it('GETs unicorn if it exists', () => {
+    return request
+      .get('/unicorns')
+  });
+
+  it('returns 404 if unicorn does not exist', () => {
+
   });
 });
