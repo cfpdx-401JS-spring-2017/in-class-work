@@ -19,7 +19,7 @@ describe('GET /', () => {
 
   it('serves images out of public', () => {
     return request
-      .get('/panda.jpg')
+      .get('/images/panda.jpg')
       .then(res => {
         return assert.equal(res.statusCode, 200);
       });
