@@ -3,7 +3,7 @@ const assert = chai.assert;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const app = require('../server');
+const app = require('../lib/app');
 
 describe('GET /', () => {
 

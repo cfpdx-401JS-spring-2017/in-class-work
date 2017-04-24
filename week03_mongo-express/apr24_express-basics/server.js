@@ -1,17 +1,8 @@
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
+const app = require('./lib/app');
+const http = require('http');
 
-app.use(morgan('dev'));
+const server = http.createServer(app);
 
-app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-  res.send('hello world');
+server.listen(3000, () => {
+  console.log('server running on', server.address());
 });
-
-app.listen(3000, ()=> {
-  console.log('app listening on port 3000');
-});
-
-module.exports = app;
