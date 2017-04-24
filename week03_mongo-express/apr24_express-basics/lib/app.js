@@ -21,7 +21,8 @@ app.get('/unicorns/:id', (req, res) => {
     .findOne({ _id })
     .then(unicorn => {
       if(!unicorn) {
-        res.status(404).send({error: 'resource not found'});
+        res.send('ok');
+        // res.status(404).send({error: 'resource not found'});
       } else {
         console.log(unicorn);
         res.send(unicorn);

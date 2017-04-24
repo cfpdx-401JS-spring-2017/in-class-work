@@ -70,8 +70,11 @@ describe('unicorns REST api', () => {
     return request
       .get('/unicorns/doesnotexist')
       .then(
-        () => {throw new Error('successful status code not expected');},
-        res => {
+        () => { //resolve
+          throw new Error('successful status code not expected');
+        },
+
+        res => { //reject
           assert.equal(res.status, 404);
           assert.isOk(res.response.body.error);
 
