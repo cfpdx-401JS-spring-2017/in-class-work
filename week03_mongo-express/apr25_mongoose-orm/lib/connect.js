@@ -1,22 +1,32 @@
+/* eslint no-console: "off" */
 const mongoose = require('mongoose');
+mongoose.Promise = Promise;
 
-const connect = {
-  db: null,
+const dbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/pets';
 
-  connect(dbUri) {
-    if (this.db) return Promise.reject('Already connected to db');
-    return mongo.connect(dbUri)
-      .then(db => this.db = db);
-  },
+mongoose.connect(dbUri);
 
-  close() {
-    if (!this.db) return Promise.resolve();
-    return this.db.close()
-      .then(result => {
-        this.db = null;
-        return result;
-      });
-  }
-};
+// CONNECTION EVENTS
+// When successfully connected
+mongoose.connection.on('connected', function () {  
+    console.log('Mongoose default connection open to ' + dbUri);
+}); 
 
-module.exports = connect;
+// If the connection throws an error
+mongoose.connection.on('error',function (err) {  
+    console.log('Mongoose default connection error: ' + err);
+}); 
+
+// When the connection is disconnected
+mongoose.connection.on('disconnected', function () {  
+    console.log('Mongoose default connection disconnected'); 
+});
+
+// If the Node process ends, close the Mongoose connection 
+process.on('SIGINT', function() {  
+    mongoose.connection.close(function () { 
+        console.log( 'Mongoose default connection disconnected through app termination' ); 
+        process.exit(0); 
+    }); 
+});
+
