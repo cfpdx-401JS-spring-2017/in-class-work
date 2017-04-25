@@ -52,8 +52,8 @@ describe('unicorns REST api', () => {
             .then(unicorn => assert.deepEqual(unicorn, foonicorn));
     });
 
-    it.skip('returns 404 if unicorn does not exist', () => {
-        return request.get('/unicorns/does-not-exist').then(
+    it('returns 404 if unicorn does not exist', () => {
+        return request.get('/unicorns/58ff9f496aafd447254c29b5').then(
             () => {
                 //resolve
                 throw new Error('successful status code not expected');

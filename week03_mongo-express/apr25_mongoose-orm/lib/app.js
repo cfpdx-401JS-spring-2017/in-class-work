@@ -13,10 +13,9 @@ app.get('/unicorns/:id', (req, res) => {
     Unicorn.findById(req.params.id)
         .then(unicorn => {
             if (!unicorn) {
-                res.status(404).send({ error: 'resource not found' });
-            } else {
-                res.send(unicorn);
+                return res.status(404).send({ error: 'resource not found' });
             }
+            res.send(unicorn);
         })
         .catch(err => {
             console.log(err);
