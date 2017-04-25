@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:watch": "npm run test -- -w" 
   },
   "author": "Marty Nelson <marty@martypdx.com>",
   "license": "ISC"
