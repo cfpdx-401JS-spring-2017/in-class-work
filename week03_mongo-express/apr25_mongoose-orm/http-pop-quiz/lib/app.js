@@ -14,7 +14,9 @@ function app(req, res) {
         res.end(superCat);
     }
     else {
-        fs.createReadStream(catHtml).pipe(res);
+        fs.readFile(catHtml, (err, contents) => {
+            res.end(contents);
+        });
     }
 }
 
