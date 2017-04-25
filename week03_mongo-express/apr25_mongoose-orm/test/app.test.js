@@ -3,32 +3,26 @@ const assert = chai.assert;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const app = require('../lib/app');
-const connection = require('../lib/connect');
+/* connect to the test database */
+process.env.MONGODB_URI = 'mongodb://localhost:27017/pets-test';
+// run the actual connect to db
+require('../lib/connect');
+// get a reference to the global connection,
+// because we need to drop the database prior to
+// running our tests
+const connection = require('mongoose').connection;
 
+/* Run our app */
+// require our app
+const app = require('../lib/app');
+// let chaiHttp (via chai.request, which was because of chai.use(chaiHttp))
+// start the server for us
 const request = chai.request(app);
 
-describe('GET /', () => {
-    it('says hello world', () => {
-        return request
-            .get('/')
-            .then(res => res.text)
-            .then(text => assert.equal(text, 'hello world'));
-    });
-
-    it('serves images out of public', () => {
-        return request.get('/images/panda.jpg').then(res => {
-            return assert.equal(res.statusCode, 200);
-        });
-    });
-});
-
 describe('unicorns REST api', () => {
-    const DB_URI = 'mongodb://localhost:27017/unicorns-test';
-
-    before(() => connection.connect(DB_URI));
+    
+    // start with a clean slate, empty db
     before(() => connection.db.dropDatabase());
-    after(() => connection.close());
 
     function saveUnicorn(unicorn) {
         return request.post('/unicorns').send(unicorn);
