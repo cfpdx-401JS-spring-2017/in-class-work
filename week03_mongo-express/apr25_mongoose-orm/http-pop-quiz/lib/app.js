@@ -14,10 +14,7 @@ function app(req, res) {
         res.end(superCat);
     }
     else {
-        const stream = fs.createReadStream(catHtml);
-        stream.on('data', chunk => res.write(chunk));
-        stream.on('end', () => res.end());
-        
+        fs.createReadStream(catHtml).pipe(res);
     }
 }
 
