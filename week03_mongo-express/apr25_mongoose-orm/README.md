@@ -19,13 +19,6 @@
 
 * Code models that correspond to logic business entities 
 (aka resources, aka domain logic) _using mongoose_. 
-* Code an express Router that expose CRUD operations against 
-the mongoose models as a set of callable REST API endpoints.
-* Correctly order app routes and multi-function routes by 
-knowing how middleware "flows"
-* Use the next() function to 
-	* Selectively apply common app logic like authentication and authorization
-	* Introduce custom properties on the request object
 
 ## Agenda
 
