@@ -19,8 +19,7 @@ const schema = new Schema({
         city: String,
         state: String,
         zip: String
-    },
-    catchPhrases: [String]
+    }
 });
 
 module.exports = mongoose.model('Unicorn', schema);
