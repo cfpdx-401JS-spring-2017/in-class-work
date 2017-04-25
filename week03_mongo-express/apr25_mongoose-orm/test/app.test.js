@@ -34,6 +34,11 @@ describe('unicorns REST api', () => {
         color: 'gold'
     };
 
+    const hornie = {
+        name: 'hornie',
+        color: 'rainbow'
+    };
+
     it('saves a unicorn', () => {
         return saveUnicorn(foonicorn)
             .then(res => res.body)
@@ -64,5 +69,16 @@ describe('unicorns REST api', () => {
                 assert.isOk(res.response.body.error);
             }
         );
+    });
+
+    it('GET all unicorns', () => {
+        return saveUnicorn(hornie)
+            .then(() => {
+                return request.get('/unicorns');
+            })
+            .then(res => {
+                const unicorns = res.body;
+                assert.equal(unicorns.length, 2);
+            });
     });
 });

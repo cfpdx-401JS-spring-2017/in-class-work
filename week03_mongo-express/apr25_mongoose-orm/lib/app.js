@@ -23,6 +23,15 @@ app.get('/unicorns/:id', (req, res) => {
         });
 });
 
+app.get('/unicorns', (req, res) => {
+    Unicorn.find()
+        .then(unicorns => res.send(unicorns))
+        .catch(err => {
+            console.log(err);
+            res.status(500).statusMessage('Internal Server Error');
+        });
+});
+
 app.post('/unicorns', (req, res) => {
     new Unicorn(req.body)
         .save()
