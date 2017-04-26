@@ -23,8 +23,7 @@ describe('pets model', () => {
                     const errors = err.errors;
                     assert.ok(errors.legs && errors.legs.kind === 'required');
                     assert.ok(errors.name && errors.name.kind === 'required');
-                }
-                );
+                });
         });
 
         it('has at least 0 legs', () => {
