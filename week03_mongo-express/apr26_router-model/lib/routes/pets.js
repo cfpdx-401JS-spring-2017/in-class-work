@@ -26,6 +26,12 @@ router
             .catch(next);
     })
     
+    .put('/:id', (req, res, next) => { 
+        Pet.findByIdAndUpdate(req.params.id, req.body, { new: true })
+            .then(pet => res.send(pet))
+            .catch(next);
+    })
+
     .delete('/:id', (req, res, next) => { 
         Pet.findByIdAndRemove(req.params.id)
             .then(response => {

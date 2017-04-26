@@ -88,8 +88,16 @@ describe('pets api', () => {
             });
     });
 
-    // TODO: update
-    // change a prop, check return and then get pet
+    it('updates pet', () => {
+        // human transform! :)
+        nagini.legs = 2;
+        return request.put(`/api/pets/${nagini._id}`)
+            .send(nagini)
+            .then(res => res.body)
+            .then(updated => {
+                assert.equal(updated.legs, 2);
+            });
+    });
 
     it('deletes a pet', () => {
         return request.delete(`/api/pets/${garfield._id}`)
@@ -112,7 +120,7 @@ describe('pets api', () => {
             });
     });
 
-    it.only('errors on validation failure', () => {
+    it('errors on validation failure', () => {
         return savePet({})
             .then(
                 () => { throw new Error('expected failure'); },
