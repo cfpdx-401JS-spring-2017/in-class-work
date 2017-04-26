@@ -3,6 +3,14 @@ const Pet = require('../../lib/models/pet');
 
 const expectedValidation = () => { throw new Error('expected validation errors'); }
 describe('pets model', () => {
+
+    it('validates good model', () => {
+        const pet = new Pet({
+            name: 'Nagini',
+            legs: 0
+        });
+        return pet.validate();
+    });
     
     it('validates name and legs are required', () => {
         const pet = new Pet();
