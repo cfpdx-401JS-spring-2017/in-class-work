@@ -58,7 +58,16 @@ describe('pets api', () => {
             });
     });
 
-    // TODO: get non-existent returns 404
+    it('GET returns 404 for non-existent id', () => {
+        const nonId = '589d04a8b6695bbdfd3106f1';
+        return request.get(`/api/pets/${nonId}`)
+            .then(
+                () => { throw new Error('expected 404'); },
+                res => {
+                    assert.equal(res.status, 404);
+                }  
+            );
+    });
 
     it('returns list of all pets', () => {
         return Promise.all([

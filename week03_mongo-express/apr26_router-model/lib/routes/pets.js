@@ -10,8 +10,12 @@ router
     })
 
     .get('/:id', (req, res, next) => {
-        Pet.findById(req.params.id)
-            .then(pet => res.send(pet))
+        const id = req.params.id;
+        Pet.findById(id)
+            .then(pet => {
+                if (!pet) res.status(404).statusMessage(`${id} not found`);
+                else res.send(pet);
+            })
             .catch(next);
     })
 
