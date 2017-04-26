@@ -24,18 +24,22 @@ describe('pets api', () => {
         legs: 4
     };
 
-    function savePet(pet) {
-        
-    }
+    let nagini = {
+        name: 'Nagini',
+        legs: 0
+    };
 
-    it('roundtrips a new pet', () => {
+    function savePet(pet) {
         return request
             // post our new pet    
             .post('/api/pets')
             // send the data as the request body
-            .send(tweety)
-            // get the response body
-            .then(res => res.body)
+            .send(pet)
+            .then(res => res.body);
+    }
+
+    it('roundtrips a new pet', () => {
+        return savePet(tweety)
             .then(saved => {
                 // check that we were assigned id
                 assert.ok(saved._id, 'saved has id');
@@ -54,8 +58,57 @@ describe('pets api', () => {
             });
     });
 
-    it('deletes a pet', () => {
+    // TODO: get non-existent returns 404
 
+    it('returns list of all pets', () => {
+        return Promise.all([
+            savePet(garfield),
+            savePet(nagini)
+        ])
+            .then(savedPets => {
+                garfield = savedPets[0];
+                nagini = savedPets[1];
+            })
+            .then(() => request.get('/api/pets'))
+            .then(res => res.body)
+            .then(pets => {
+                assert.equal(pets.length, 3);
+                assert.include(pets, tweety);
+                assert.include(pets, garfield);
+                assert.include(pets, nagini);
+            });
+    });
+
+    // TODO: update
+    // change a prop, check return and then get pet
+
+    it('deletes a pet', () => {
+        return request.delete(`/api/pets/${garfield._id}`)
+            .then(res => res.body)
+            .then(result => {
+                assert.isTrue(result.removed);
+            })
+            .then(() => request.get('/api/pets'))
+            .then(res => res.body)
+            .then(pets => {
+                assert.equal(pets.length, 2);
+            });
+    });
+
+    it('delete a non-existent pet is removed false', () => {
+        return request.delete(`/api/pets/${garfield._id}`)
+            .then(res => res.body)
+            .then(result => {
+                assert.isFalse(result.removed);
+            });
+    });
+
+    it.only('errors on validation failure', () => {
+        return savePet({})
+            .then(
+                () => { throw new Error('expected failure'); },
+                () => { }  
+            );
     });
 
 });
