@@ -2,12 +2,12 @@ const Router = require('express').Router;
 const router = Router();
 
 router
-    .get('/api/pets', (req, res) => {
-
+    .get('/', (req, res) => {
+        res.send([{ pet: true }]);
     })
 
-    .post('/api/pets', (req, res) => {
-
+    .post('/', (req, res) => {
+        res.send({ post: 'pets' });
     });
 
 
