@@ -1,11 +1,5 @@
 const assert = require('chai').assert;
-
-function createLogger(log) {
-    return (req, res, next) => {
-        log(`Hi Ivy, you requested ${req.method} ${req.path}`);
-        next();
-    };
-}
+const createLogger = require('../../lib/logger');
 
 it('logs', () => {
     let logged = '';
