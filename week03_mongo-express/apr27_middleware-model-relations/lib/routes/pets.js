@@ -36,6 +36,23 @@ router
             .then(pet => res.send(pet))
             .catch(next);
     })
+
+    .put('/:id/toys', (req, res, next) => {
+        Pet.findById(req.params.id)
+            .then(pet => {
+                const newToyId = req.body.id;
+                const toys = pet.toys;
+                const hasToy = toys.some(t => t == newToyId);
+                if (hasToy) return pet;
+
+                pet.toys.push(newToyId);
+                return pet.save();
+            })
+            .then(pet => {
+                res.send(pet);
+            })
+            .catch(next);
+    })
     
     .put('/:id', (req, res, next) => { 
         delete req.body._id;
