@@ -14,8 +14,10 @@ app.use(bodyParser.json());
 AND is the express Router that will call the subroutes */
 const pets = require('./routes/pets');
 const stores = require('./routes/stores');
+const toys = require('./routes/toys');
 
 app.use('/api/pets', pets);
 app.use('/api/stores', stores);
+app.use('/api/toys', toys);
 
 module.exports = app;

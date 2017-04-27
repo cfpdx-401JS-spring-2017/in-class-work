@@ -16,7 +16,11 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Store',
         required: true
-    }
+    },
+    toys: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Toy'
+    }]
 });
 
 module.exports = mongoose.model('Pet', schema);

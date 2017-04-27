@@ -13,7 +13,7 @@ router
             .populate({
                 path: 'store',
                 select: 'name'
-            })    
+            }) 
             .then(pets => res.send(pets))
             .catch(next);
     })
@@ -21,6 +21,8 @@ router
     .get('/:id', (req, res, next) => {
         const id = req.params.id;
         Pet.findById(id)
+            .lean()
+            .populate('toys store')
             .then(pet => {
                 if (!pet) res.status(404).statusMessage(`${id} not found`);
                 else res.send(pet);
