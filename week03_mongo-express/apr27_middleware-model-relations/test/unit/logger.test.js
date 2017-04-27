@@ -1,7 +1,7 @@
 const assert = require('chai').assert;
 const createLogger = require('../../lib/logger');
 
-it('logs', () => {
+it('logs', done => {
     let logged = '';
     const log = (message) => logged = message; 
     
@@ -9,14 +9,10 @@ it('logs', () => {
         method: 'GET',
         path: '/api/pet'
     };
-
-    let nextCalled = false;
-    const next = () => nextCalled = true;
     
     const logger = createLogger(log);
     
-    logger(req, null, next);
+    logger(req, null, done);
 
     assert.equal(logged, 'Hi Ivy, you requested GET /api/pet');
-    assert.equal(nextCalled, true);
 });
