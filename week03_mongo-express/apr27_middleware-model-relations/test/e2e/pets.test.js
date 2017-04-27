@@ -14,7 +14,7 @@ describe('pets api', () => {
             .then(savedStore => store = savedStore);
     });
     
-    it.only('initial /GET returns empty list', () => {
+    it('initial /GET returns empty list', () => {
         return request.get('/api/pets')
             .then(req => {
                 const pets = req.body;
