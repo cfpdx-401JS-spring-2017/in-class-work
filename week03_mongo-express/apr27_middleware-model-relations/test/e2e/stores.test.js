@@ -4,7 +4,7 @@ const db = require('./_db');
 
 describe('stores api', () => {
     
-    before(db.drop);
+    //before(db.drop);
 
     // it('initial /GET returns empty list', () => {
     //     return request.get('/api/stores')

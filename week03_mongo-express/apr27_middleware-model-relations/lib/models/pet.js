@@ -11,6 +11,11 @@ const schema = new Schema({
         required: true,
         min: 0,
         max: 8
+    },
+    store: {
+        type: Schema.Types.ObjectId,
+        ref: 'Store',
+        required: true
     }
 });
 

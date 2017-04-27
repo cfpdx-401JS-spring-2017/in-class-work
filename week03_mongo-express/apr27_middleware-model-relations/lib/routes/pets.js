@@ -4,7 +4,16 @@ const Pet = require('../models/pet');
 
 router
     .get('/', (req, res, next) => {
+        // Pet.find returns a "query"
         Pet.find()
+            .lean()    
+            .select('name legs store')    
+            // Tell mongoose, we want to "populate"
+            // the store field with actual store data
+            .populate({
+                path: 'store',
+                select: 'name'
+            })    
             .then(pets => res.send(pets))
             .catch(next);
     })

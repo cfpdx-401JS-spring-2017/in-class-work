@@ -6,7 +6,15 @@ describe('pets api', () => {
     
     before(db.drop);
 
-    it('initial /GET returns empty list', () => {
+    let store = null;    
+    before(() => {
+        return request.post('/api/stores')
+            .send({ name: 'downtown' })
+            .then(res => res.body)
+            .then(savedStore => store = savedStore);
+    });
+    
+    it.only('initial /GET returns empty list', () => {
         return request.get('/api/pets')
             .then(req => {
                 const pets = req.body;
@@ -30,6 +38,7 @@ describe('pets api', () => {
     };
 
     function savePet(pet) {
+        pet.store = store._id;
         return request
             // post our new pet    
             .post('/api/pets')
