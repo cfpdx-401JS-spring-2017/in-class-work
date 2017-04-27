@@ -1,10 +1,12 @@
 const express = require('express');
 const app = express();
-const morgan = require('morgan');
+// const morgan = require('morgan');
+const logger = require('./logger');
 const bodyParser = require('body-parser');
 
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
+app.use(logger(console.log));
 app.use(bodyParser.json());
 
 /* pets is a http request event listener
