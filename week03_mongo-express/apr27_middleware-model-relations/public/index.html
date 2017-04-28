@@ -12,7 +12,7 @@
     </header>
     <main>
         <ul id="stores"></ul>
-        <form onsubmit="addStore(this.elements); return false;">
+        <form onsubmit="addStore(this); return false;">
             <div>
                 <label>name: <input name="name"></label>
             </div>
@@ -21,9 +21,10 @@
             </div>
             <button type="submit">Add</button>
         </form>
+        <pre id="error" style="color: red;"></pre>
     </main>
     <template id="storeTemplate">
-        <li></li>
+        <li><span></span><button>x</button></li>
     </template>
     <script src="/js/main.js"></script>
 </body>

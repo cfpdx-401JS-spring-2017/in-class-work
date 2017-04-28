@@ -4,15 +4,6 @@ const Store = require('../models/store');
 const Pet = require('../models/pet');
 
 router
-    .post('/', (req, res, next) => {
-        console.log(req.body);
-        new Store(req.body)
-            .save()
-            .then(store => res.send(store))
-            .catch(err => next(JSON.stringify(err.errors, true, 2)));
-
-    })
-
     .get('/', (req, res, next) => {
         Store.find()
             .lean()
@@ -34,6 +25,18 @@ router
             })
             .catch(next);
             
+    })
+    
+    .post('/', (req, res, next) => {
+        new Store(req.body)
+            .save()
+            .then(store => res.send(store))
+            .catch(err => next(JSON.stringify(err.errors, true, 2)));
+    })
+    
+    .delete('/:id', (req, res) => {
+        Store.findByIdAndRemove(req.params.id)
+            .then(store => res.send({ removed: !!store }));
     });
 
 
