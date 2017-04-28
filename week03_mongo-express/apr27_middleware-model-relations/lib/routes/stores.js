@@ -5,8 +5,17 @@ const Pet = require('../models/pet');
 
 router
     .post('/', (req, res, next) => {
+        console.log(req.body);
         new Store(req.body)
             .save()
+            .then(store => res.send(store))
+            .catch(err => next(JSON.stringify(err.errors, true, 2)));
+
+    })
+
+    .get('/', (req, res, next) => {
+        Store.find()
+            .lean()
             .then(store => res.send(store))
             .catch(next);
     })
