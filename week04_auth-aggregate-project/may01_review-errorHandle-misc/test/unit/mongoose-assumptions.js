@@ -19,14 +19,14 @@ const model = mongoose.model('Model', schema);
 
 const throwOnSuccess = () => { throw new Error('expected validation failure'); };
 
-it.skip('required object', () => {
-    const data = {
-        count: 'string'
-    };
-    return new model(data)
-        .validate()
-        .then(throwOnSuccess, err => {
-            // console.log(JSON.stringify(err.errors, true, 2));
-            assert.isOk(err.errors);
-        });
-});
+// it.skip('required object', () => {
+//     const data = {
+//         count: 'string'
+//     };
+//     return new model(data)
+//         .validate()
+//         .then(throwOnSuccess, err => {
+//             // console.log(JSON.stringify(err.errors, true, 2));
+//             assert.isOk(err.errors);
+//         });
+// });

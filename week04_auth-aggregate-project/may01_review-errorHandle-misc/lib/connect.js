@@ -6,7 +6,7 @@ mongoose.Promise = Promise;
 
 module.exports = function (dbUri) {
     // TODO: close existing connection, if already open...
-    const promise = mongoose.connect(dbUri);
+    const promise = mongoose.connect(dbUri).then(() => mongoose.connection);
 
     // CONNECTION EVENTS
     // When successfully connected
@@ -32,6 +32,6 @@ module.exports = function (dbUri) {
         });
     });
 
-    return promise;
+    return promise;    
 };
 
