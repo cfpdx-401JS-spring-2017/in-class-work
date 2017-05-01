@@ -1,4 +1,5 @@
-function getErrorHandler() {
+//eslint-disable-next-line no-console
+function getErrorHandler(log = console.log) {
 
     // eslint-disable-next-line no-unused-vars    
     return function errorHandler(err, req, res, next) { 
@@ -28,8 +29,7 @@ function getErrorHandler() {
             // Default for errors we don't know about
             code = 500;
             error = 'Internal Server Error';
-            //eslint-disable-next-line no-console
-            console.log(err);
+            log(err);
         }
 
         // send back code and error data        
