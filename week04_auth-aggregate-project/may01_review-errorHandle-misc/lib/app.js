@@ -1,6 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const errorHandler = require('./error-handler');
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -14,5 +16,7 @@ const toys = require('./routes/toys');
 app.use('/api/pets', pets);
 app.use('/api/stores', stores);
 app.use('/api/toys', toys);
+
+app.use(errorHandler());
 
 module.exports = app;

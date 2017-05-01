@@ -31,7 +31,7 @@ router
         new Store(req.body)
             .save()
             .then(store => res.send(store))
-            .catch(err => next(JSON.stringify(err.errors, true, 2)));
+            .catch(next);
     })
     
     .delete('/:id', (req, res) => {

@@ -48,6 +48,6 @@ function customError(err) {
 
 function unknownError(err) {
     //eslint-disable-next-line no-console
-    console.log(err);
+    console.log('INTERNAL SERVER ERROR', err);
     return { code: 500, error: 'Internal Server Error' };
 }
