@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pets R Kewl</title>
+</head>
+<body>
+    <header>
+        <h1>Pets R Kewl</h1>
+    </header>
+    <main>
+        <ul id="stores"></ul>
+        <form onsubmit="addStore(this); return false;">
+            <div>
+                <label>name: <input name="name"></label>
+            </div>
+            <div>
+                <label>city: <input name="city"></label>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+        <pre id="error" style="color: red;"></pre>
+    </main>
+    <template id="storeTemplate">
+        <li><span></span><button>x</button></li>
+    </template>
+    <script src="/js/main.js"></script>
+</body>
+</html>
