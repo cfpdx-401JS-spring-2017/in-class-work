@@ -5,7 +5,7 @@ const Address = require('./address');
 const schema = new Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'Yo, no forgetzy za {PATH}!']
     },
     address: Address.schema,
     yearFounded: Number
