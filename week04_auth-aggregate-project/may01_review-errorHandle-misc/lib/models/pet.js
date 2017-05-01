@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Vaccination = require('./vaccination');
 
 const schema = new Schema({
     name: {
@@ -20,7 +21,8 @@ const schema = new Schema({
     toys: [{
         type: Schema.Types.ObjectId,
         ref: 'Toy'
-    }]
+    }],
+    vaccinations: [Vaccination.schema]
 });
 
 module.exports = mongoose.model('Pet', schema);

@@ -12,10 +12,12 @@ app.use(express.static('./public'));
 const pets = require('./routes/pets');
 const stores = require('./routes/stores');
 const toys = require('./routes/toys');
+const vaccines = require('./routes/vaccines');
 
 app.use('/api/pets', pets);
 app.use('/api/stores', stores);
 app.use('/api/toys', toys);
+app.use('/api/vaccines', vaccines);
 
 app.use(errorHandler());
 

@@ -22,9 +22,14 @@ router
         const id = req.params.id;
         Pet.findById(id)
             .lean()
-            .populate('toys store')
+            .populate('toys')
+            .populate('store')
+            .populate({
+                path: 'vaccinations.vaccine',
+                select: 'name'
+            })
             .then(pet => {
-                if (!pet) res.status(404).statusMessage(`${id} not found`);
+                if (!pet) throw { code: 404, error: `${id} not found` };
                 else res.send(pet);
             })
             .catch(next);

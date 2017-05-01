@@ -7,7 +7,8 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    address: Address.schema
+    address: Address.schema,
+    yearFounded: Number
 });
 
 module.exports = mongoose.model('Store', schema);

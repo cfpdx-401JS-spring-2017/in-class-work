@@ -63,7 +63,7 @@ describe('pets api', () => {
             .then(res => res.body)
             .then(got => {
                 // should be same as response from post
-                assert.deepEqual(got, tweety);
+                assert.deepEqual(got, Object.assign(tweety, { store }));
             });
     });
 
@@ -91,9 +91,20 @@ describe('pets api', () => {
             .then(res => res.body)
             .then(pets => {
                 assert.equal(pets.length, 3);
-                assert.include(pets, tweety);
-                assert.include(pets, garfield);
-                assert.include(pets, nagini);
+                function test(pet) {
+                    assert.include(pets, {
+                        _id: pet._id,
+                        legs: pet.legs,
+                        name: pet.name,
+                        store: {
+                            _id: store._id,
+                            name: store.name
+                        }
+                    });
+                }
+                test(tweety);
+                test(garfield);
+                test(nagini);
             });
     });
 
@@ -136,5 +147,47 @@ describe('pets api', () => {
                 () => { }  
             );
     });
+
+    describe('vaccinations', () => {
+
+        let vaccine = null;
+        before(() => {
+            return request.post('/api/vaccines')
+                .send({ name: 'okiedokieitis', manufacturer: 'wellpet' })
+                .then(res => res.body)
+                .then(saved => vaccine = saved);
+        });
+
+        it.only('saves a pet with a vaccinations', () => {
+            const date = new Date();
+            let pet = {
+                name: 'floppy',
+                legs: 4,
+                store: store._id,
+                vaccinations: [{
+                    date: date,
+                    vaccine: vaccine._id
+                }]
+            };
+
+            return savePet(pet)
+                .then(saved => {
+                    pet = saved;
+                    assert.equal(pet.vaccinations.length, 1);
+                })
+                .then(() => request.get(`/api/pets/${pet._id}`))
+                .then(res => res.body)
+                .then(pet => {
+                    delete pet.vaccinations[0]._id;
+                    assert.deepEqual(pet.vaccinations, [{
+                        vaccine: {
+                            _id: vaccine._id,
+                            name: vaccine.name
+                        },
+                        date: date.toISOString()
+                    }]);
+                });
+        });
+    });  
 
 });
