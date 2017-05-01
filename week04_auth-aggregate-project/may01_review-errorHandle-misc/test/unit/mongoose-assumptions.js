@@ -19,7 +19,7 @@ const model = mongoose.model('Model', schema);
 
 const throwOnSuccess = () => { throw new Error('expected validation failure'); };
 
-it.only('required object', () => {
+it.skip('required object', () => {
     const data = {
         count: 'string'
     };
