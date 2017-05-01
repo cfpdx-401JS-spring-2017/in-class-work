@@ -158,7 +158,7 @@ describe('pets api', () => {
                 .then(saved => vaccine = saved);
         });
 
-        it.only('saves a pet with a vaccinations', () => {
+        it('saves a pet with a vaccinations', () => {
             const date = new Date();
             let pet = {
                 name: 'floppy',
