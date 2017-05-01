@@ -1,34 +1,38 @@
 //eslint-disable-next-line no-console
-function getErrorHandler() {
+function getErrorHandler(log = console.log) {
 
     // eslint-disable-next-line no-unused-vars    
-    return function errorHandler(err, req, res, next) { 
+    function errorHandler(err, req, res, next) { 
         // choose which type of error handler
         const handler = chooseHandler(err);
         // invoke hander to get code and error
         const { code, error } = handler(err);
         // send back code and error data        
         res.status(code).send({ error });
-    };  
+    }
+
+    errorHandler.chooseHandler = chooseHandler;
+    errorHandler.mongooseError = mongooseError;
+    errorHandler.customError = customError;
+    errorHandler.unknownError = getUnknownError(log);
+
+    function chooseHandler(err) { 
+        // Mongoose Validation and Cast Errors
+        if (err.errors) return errorHandler.mongooseError;
+            
+        // One of our errors, with "code" property
+        else if (err.code) return errorHandler.customError;
+        
+        // or something unexpected?
+        return errorHandler.unknownError;
+    }
+
+    return errorHandler;
 }
 
-getErrorHandler.chooseHandler = chooseHandler;
-getErrorHandler.mongooseError = mongooseError;
-getErrorHandler.customError = customError;
-getErrorHandler.unknownError = unknownError;
 
 module.exports = getErrorHandler;
 
-function chooseHandler(err) { 
-    // Mongoose Validation and Cast Errors
-    if (err.errors) return mongooseError;
-        
-    // One of our errors, with "code" property
-    else if (err.code) return customError;
-    
-    // or something unexpected?
-    return unknownError;
-}
 
 function mongooseError(err) {
     const validations = err.errors;
@@ -46,8 +50,9 @@ function customError(err) {
     return err;
 }
 
-function unknownError(err) {
-    //eslint-disable-next-line no-console
-    console.log('INTERNAL SERVER ERROR', err);
-    return { code: 500, error: 'Internal Server Error' };
+function getUnknownError(log) {
+    return function unknownError(err) {
+        log(err);
+        return { code: 500, error: 'Internal Server Error' };
+    };
 }

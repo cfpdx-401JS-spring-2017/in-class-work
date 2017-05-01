@@ -1,11 +1,6 @@
 const assert = require('chai').assert;
 const getErrorHandler = require('../../lib/error-handler');
 
-const chooseHandler = getErrorHandler.chooseHandler;
-const mongooseError = getErrorHandler.mongooseError;
-const customError = getErrorHandler.customError;
-const unknownError = getErrorHandler.unknownError;
-
 const MONGOOSE_ERROR = {
     errors: {
         name: { message: 'name is required' },
@@ -22,6 +17,15 @@ const UNKNOWN_ERROR = new Error('unknown error');
 
 describe('errorHandler', () => {
 
+    let logged = null;
+    const log = msg => logged = msg;
+    const errorHandler = getErrorHandler(log);    
+
+    const chooseHandler = errorHandler.chooseHandler;
+    const mongooseError = errorHandler.mongooseError;
+    const customError = errorHandler.customError;
+    const unknownError = errorHandler.unknownError;
+
     describe('choose handler', () => {
         it('mongoose', () => {
             assert.equal(chooseHandler(MONGOOSE_ERROR), mongooseError); 
@@ -31,7 +35,7 @@ describe('errorHandler', () => {
             assert.equal(chooseHandler(CUSTOM_ERROR), customError); 
         });
         
-        it('mongoose', () => {
+        it('unknown', () => {
             assert.equal(chooseHandler(UNKNOWN_ERROR), unknownError); 
         });
     });
@@ -56,6 +60,7 @@ describe('errorHandler', () => {
             const { code, error } = unknownError(UNKNOWN_ERROR);
             assert.equal(code, 500);
             assert.equal(error, 'Internal Server Error');
+            assert.equal(logged, UNKNOWN_ERROR);
         });
     });
 
