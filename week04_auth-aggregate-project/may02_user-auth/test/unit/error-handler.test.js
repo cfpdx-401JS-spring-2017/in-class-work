@@ -1,5 +1,5 @@
 const assert = require('chai').assert;
-const getErrorHandler = require('../../lib/error-handler');
+const getErrorHandler = require('../../lib/error-handlers/error-handler');
 
 const MONGOOSE_ERROR = {
     errors: {

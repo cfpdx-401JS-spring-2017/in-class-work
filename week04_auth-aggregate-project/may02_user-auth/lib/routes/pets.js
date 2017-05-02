@@ -8,33 +8,13 @@ router
         Pet.find()
             .lean()    
             .select('name legs store')    
-            // Tell mongoose, we want to "populate"
-            // the store field with actual store data
-            // .populate({
-            //     path: 'store',
-            //     select: 'name'
-            // }) 
             .then(pets => res.send(pets))
             .catch(next);
     })
 
     .get('/:id', (req, res, next) => {
         const id = req.params.id;
-        Pet.findById(id)
-            .lean()
-            .select('-__v')
-            .populate({
-                path: 'store',
-                select: 'name'
-            })
-            .populate({
-                path: 'toys',
-                select: 'name'
-            })
-            .populate({
-                path: 'vaccinations.vaccine',
-                select: 'name'
-            })
+        Pet.getDetailById(id)
             .then(pet => {
                 if (!pet) throw { code: 404, error: `${id} not found` };
                 else res.send(pet);
@@ -43,8 +23,8 @@ router
     })
 
     .post('/', (req, res, next) => {
-        new Pet(req.body)
-            .save()
+        const pet = new Pet(req.body);
+        pet.save()
             .then(pet => res.send(pet))
             .catch(next);
     })

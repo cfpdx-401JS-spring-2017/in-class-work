@@ -33,4 +33,22 @@ const schema = new Schema({
     }]
 });
 
+schema.static('getDetailById', function (id) {
+    return this.findById(id)
+        .lean()
+        .select('-__v')
+        .populate({
+            path: 'store',
+            select: 'name'
+        })
+        .populate({
+            path: 'toys',
+            select: 'name'
+        })
+        .populate({
+            path: 'vaccinations.vaccine',
+            select: 'name'
+        });
+});
+
 module.exports = mongoose.model('Pet', schema);

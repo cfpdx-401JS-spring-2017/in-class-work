@@ -5,15 +5,26 @@ const assert = require('chai').assert;
 describe.only('pets api', () => {
     before(db.drop);
 
+    let token = '';    
+    before(() => {
+        return request.post('/api/auth/signup')
+            .send({ email: 'me@me.com', password: 'abc' })
+            .then(res => {
+                token = res.body.token;
+            });
+    });
+
+    function seedData(url, data) {
+        return request.post(url).send(data).set('Authorization', token);
+    }
+
     let store, toy1, toy2, vaccine;
     before(() => {
         return Promise.all([
-            request.post('/api/stores').send({ name: 'downtown' }),
-            request.post('/api/toys').send({ name: 'feather chaser', silent: true }),
-            request.post('/api/toys').send({ name: 'tumble ball', silent: false }),
-            request
-                .post('/api/vaccines')
-                .send({ name: 'okiedokisis', manufacturer: 'petmed' })
+            seedData('/api/stores', { name: 'downtown' }),
+            seedData('/api/toys', { name: 'feather chaser', silent: true }),
+            seedData('/api/toys', { name: 'tumble ball', silent: false }),
+            seedData('/api/vaccines', { name: 'okiedokisis', manufacturer: 'petmed' })
         ])
             .then(results => results.map(res => res.body))
             .then(bodies => {
@@ -38,9 +49,12 @@ describe.only('pets api', () => {
         return request
             .post('/api/pets')
             .send(pet)
+            .set('Authorization', token)
             .then(res => {
                 pet = res.body;
-                return request.get(`/api/pets/${pet._id}`);
+                return request
+                    .get(`/api/pets/${pet._id}`)
+                    .set('Authorization', token);
             })
             .then(res => {
                 const got = res.body;

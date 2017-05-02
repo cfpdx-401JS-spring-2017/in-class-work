@@ -1,3 +1,12 @@
+
+const token = localStorage.token;
+if (token) {
+    fetch('/api/auth/verify')
+        .then(() => {
+            // transitionToSignedIn();
+        });
+}
+
 fetch('/api/stores')
     .then(res => res.json())
     .then(loadStores);
