@@ -26,7 +26,7 @@ describe.only('pets api', () => {
 
     it('detail pet GET', () => {
         let pet = {
-            name: 'petly',
+            name: 'pet-lee',
             legs: 3,
             store: store._id,
             toys: [toy1._id, toy2._id],
