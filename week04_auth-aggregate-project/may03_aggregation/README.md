@@ -42,3 +42,4 @@
 			2. Work out commands in RoboMongo
 			3. Copy to Route
 		* [Operators](https://docs.mongodb.com/manual/reference/operator/aggregation/#aggregation-pipeline-operator-reference)
+		* [Walk-thru for restaurants](https://docs.mongodb.com/getting-started/shell/aggregation/)
