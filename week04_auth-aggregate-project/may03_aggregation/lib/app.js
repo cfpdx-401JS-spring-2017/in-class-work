@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const errorHandler = require('./error-handlers/error-handler');
+const errorHandler = require('./error-handler');
 
 const app = express();
 

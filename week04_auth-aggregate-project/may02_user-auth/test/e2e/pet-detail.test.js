@@ -50,16 +50,14 @@ describe.only('pets api', () => {
             .post('/api/pets')
             .send(pet)
             .set('Authorization', token)
-            .then(res => {
-                pet = res.body;
+            .then(({ body: pet }) => {
                 return request
                     .get(`/api/pets/${pet._id}`)
                     .set('Authorization', token);
             })
-            .then(res => {
-                const got = res.body;
-
-                assert.deepEqual(got, {
+            .then(({ body: pet }) => {
+                
+                assert.deepEqual(pet, {
                     _id: pet._id,
                     name: pet.name,
                     legs: pet.legs,

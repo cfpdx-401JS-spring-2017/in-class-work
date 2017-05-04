@@ -21,8 +21,7 @@ router
     })  
     
     .post('/signup', hasEmailAndPassword, (req, res, next) => {
-        const email = req.body.email;
-        const password = req.body.password;
+        const { email, password } = req.body;
         delete req.body.password;
 
         User.exists({ email })
@@ -39,8 +38,7 @@ router
     })
     
     .post('/signin', hasEmailAndPassword, (req, res, next) => {
-        const email = req.body.email;
-        const password = req.body.password;
+        const { email, password } = req.body;
         delete req.body.password;
 
         User.findOne({ email })

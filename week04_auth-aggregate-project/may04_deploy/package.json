@@ -1,0 +1,33 @@
+{
+  "name": "apr24_express-basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "//pretest": "npm run lint",
+    "test": "mocha --recursive",
+    "test:watch": "npm run test -- -w",
+    "test:unit": "mocha test/unit",
+    "test:e2e": "mocha test/e2e",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "jsonwebtoken-promisified": "^1.0.3",
+    "mongoose": "^4.9.6",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.19.0",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.3.0"
+  }
+}

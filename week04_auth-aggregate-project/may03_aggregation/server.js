@@ -3,7 +3,7 @@ const app = require('./lib/app');
 const http = require('http');
 
 const connect = require('./lib/connect');
-const dbUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/restaurants';
+const dbUri = process.env.MONGODB_URI || 'mongodb://admin:admin@ds137267.mlab.com:37267/eateries';
 connect(dbUri);
 
 const server = http.createServer(app);

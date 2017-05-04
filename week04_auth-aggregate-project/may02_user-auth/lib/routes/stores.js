@@ -20,9 +20,7 @@ router
             Store.findById(storeId).lean(),
             Pet.find({ store: storeId }).lean()
         ])
-            .then(result => {
-                const store = result[0];
-                const pets = result[1];
+            .then(([ store, pets ]) => {
                 store.pets = pets;
                 res.send(store);
             })
