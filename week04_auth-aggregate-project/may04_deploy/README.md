@@ -10,12 +10,29 @@
 1. Deploy to heroku
 1. Setup mLab
 1. Manage environment variables
+	* `.env` file for storing environment variable
+		* **MUST** add `.env` to `.gitignore
+	* load via:
+		* `env $(cat .env)` if everyone on NIX
+		* use `npm i dotenv -S` and `require('dotenv').config()` for 
+		cross-platform support
 
 ## Agenda
 
 Repo is here: https://github.com/martypdx/petsRKewl
 
 * Deploy to Heroku
+	* Specifiy engine in `package.json`:
+	```json
+	{
+	"name": "pets-r-kewl",
+	"version": "1.0.0",
+	"engines": {
+		"node": "7.x"
+	},
+	"description": "",
+	```
+
 * Setup mLab
 * Manage env  variables
 * api guide at index.html
