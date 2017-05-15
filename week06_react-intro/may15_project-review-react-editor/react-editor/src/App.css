@@ -1,0 +1,19 @@
+body {
+  font-family: sans-serif;
+}
+
+.editor {
+  padding: 20px;
+}
+
+label {
+  display: block;
+  padding-bottom: 15px;
+}
+
+.display {
+  margin-top: 20px;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #aaa;
+}
