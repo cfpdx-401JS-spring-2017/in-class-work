@@ -68,3 +68,10 @@ Try it out: https://babeljs.io/repl/
 * Functions
 	* Explicit via `bind` and `call` and `apply`
 	* Contextless `=>` functions
+
+
+### React rules of state
+
+1. Push state to lowest possible component
+2. Shared state between sibling components, must belong
+to a common ancestor.
