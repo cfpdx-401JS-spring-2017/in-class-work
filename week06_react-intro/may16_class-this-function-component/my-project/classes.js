@@ -1,10 +1,16 @@
+// Remember: function properties of object literals (methods)
+// can omit the ": function" part
+const obj = {
+    name: 'name',
+    sayHello() {}
+};
 
-function Person(name) {
-    this.name = name;
-}
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
 
-Person.prototype.sayHello = function () {
-    return `Hello ${this.name}`;
+    sayHello() {}
 }
 
 function SuperHero(name) {
@@ -13,9 +19,9 @@ function SuperHero(name) {
 
 SuperHero.prototype = Object.create(Person.prototype);
 
-SuperHero.prototype.sayHello = function () {
+SuperHero.prototype.sayHello = function() {
     return Person.prototype.sayHello.call(this) + ' I am super';
-}
+};
 
 const hero = new SuperHero('David');
 
