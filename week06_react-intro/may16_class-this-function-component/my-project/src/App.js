@@ -8,8 +8,12 @@ class App extends Component {
         // because both child Components NumberList and
         // Show Numbers share that data
         this.state = {
-            numbers: []
+            numbers: [3, 7]
         };
+      
+        // bind the "addNumber" function, so we can use short format
+        // addNumber={this.addNumber} in our JSX
+        this.addNumber = this.addNumber.bind(this);
     }
 
     // componentDidMount() {}
@@ -36,10 +40,9 @@ class App extends Component {
                 </div>
                 <div>
                     {/* pass the "numbers" state of App, as props for NumberList */}
-                    <NumberList numbers={this.state.numbers} />
-                    <button onClick={() => this.addNumber()}>
-                        Add a Number
-                    </button>
+                    {/* pass this.addNumber to be the handler for when NumberList wants
+                    to let App know time to add a number */}
+                    <NumberList numbers={this.state.numbers} addNumber={this.addNumber}/>
                 </div>
                 <div>
                     {/* pass the "numbers" state of App, as props for ShowNumbers */}
@@ -85,6 +88,9 @@ class NumberList extends Component {
                         />
                     ))}
                 </ul>
+                <button onClick={() => this.props.addNumber()}>
+                    Add a Number
+                </button>
             </div>
         );
     }
