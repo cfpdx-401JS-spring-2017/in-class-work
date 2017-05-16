@@ -7,6 +7,16 @@ Person.prototype.sayHello = function () {
     return `Hello ${this.name}`;
 }
 
-const person = new Person('David');
+function SuperHero(name) {
+    Person.call(this, name);
+}
 
-console.log(person.sayHello());
+SuperHero.prototype = Object.create(Person.prototype);
+
+SuperHero.prototype.sayHello = function () {
+    return Person.prototype.sayHello.call(this) + ' I am super';
+}
+
+const hero = new SuperHero('David');
+
+console.log(hero.sayHello());
