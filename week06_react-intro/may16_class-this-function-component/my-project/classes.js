@@ -1,28 +1,23 @@
-// Remember: function properties of object literals (methods)
-// can omit the ": function" part
-const obj = {
-    name: 'name',
-    sayHello() {}
-};
-
 class Person {
     constructor(name) {
         this.name = name;
     }
 
-    sayHello() {}
+    sayHello() {
+        return `Hello my name is ${this.name}`;
+    }
 }
 
-function SuperHero(name) {
-    Person.call(this, name);
+class SuperHero extends Person {
+    constructor(name, power) {
+        super(name);
+        this.power = power;
+    }
+
+    sayHello() {
+        return super.sayHello() + ' I am a super and my power is ' + this.power;
+    }
 }
 
-SuperHero.prototype = Object.create(Person.prototype);
-
-SuperHero.prototype.sayHello = function() {
-    return Person.prototype.sayHello.call(this) + ' I am super';
-};
-
-const hero = new SuperHero('David');
-
+const hero = new SuperHero('David', 'Omnipotence')
 console.log(hero.sayHello());
