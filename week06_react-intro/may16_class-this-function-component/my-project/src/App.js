@@ -10,10 +10,13 @@ class App extends Component {
       size: 20,
       color: '#aaaaaa'
     }    
+
+    this.changeFontSize = this.changeFontSize.bind(this);
+    this.changeColor = this.changeColor.bind(this);
   }
 
-  changeFontSize(size) {
-    this.setState({ size });
+  changeFontSize({ target }) {
+    this.setState({ size: target.value });
   }
 
   changeColor(color) {
@@ -39,11 +42,11 @@ class App extends Component {
           size is {size}
           <input type="range"
             value={size}
-            onChange={event => this.changeFontSize(event.target.value)} />
+            onChange={this.changeFontSize} />
           <br/>
             <input type="color" 
               value={color}
-              onChange={event => this.changeColor(event.target.value)} />
+              onChange={this.changeColor} />
           </div>
         
           <p style={{
