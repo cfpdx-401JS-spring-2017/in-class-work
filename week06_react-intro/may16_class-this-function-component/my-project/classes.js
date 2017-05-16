@@ -9,15 +9,21 @@ class Person {
 }
 
 class SuperHero extends Person {
-    constructor(name, power) {
+    constructor({ name, power, archEnemy = 'T^3' }) {
         super(name);
         this.power = power;
+        this.archEnemy = archEnemy;
     }
 
     sayHello() {
-        return super.sayHello() + ' I am a super and my power is ' + this.power;
+        return `${super.sayHello()} I am a super and my power is ${this.power}.
+And I will stop ${this.archEnemy} at any cost!`;
     }
 }
 
-const hero = new SuperHero('David', 'Omnipotence')
+const hero = new SuperHero({
+    name: 'David',
+    power: 'Omnipotence'
+});
+
 console.log(hero.sayHello());
