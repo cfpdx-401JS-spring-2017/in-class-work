@@ -48,7 +48,7 @@
 	1. Application layer
 		* React offers a whole new paradigm
 	1. Let focus on build or app, but not both. 
-	1. App more relvent to help you care about build system
+	1. App more relevent to start with. Then you can care about details of build system
 	1. Enter `create-react-app`...
 
 ## Why React?
@@ -71,7 +71,7 @@
 
 ### JSX
 * Gets transpiled to JavaScript (that creates vdom)
-* Try babeljs.io/repl to see what JSX gets turned into
+* Try [babeljs.io/repl](http://babeljs.io/repl) to see what JSX gets turned into
 * Offers declarative construct on top of React.createElement calls
 * Enables full usage of Javascript
 * Any normal JS expressions may be used
