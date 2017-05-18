@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
 
-export function Greeter({ name }) {
-  return <div>Hello <span>{name}</span></div>;
+export function Greeter({ salutation, name }) {
+  return <div>{salutation} <span>{name}</span></div>;
 }
 
 export class Greetings extends Component {
   constructor() {
     super();
     this.state = {
-      people: ['Jane', 'Jill', 'Joey']
+      salutation: 'Hello'
     };
   }
 
   render() {
-    const { people } = this.state;
+    const { people } = this.props;
     return (
-      <ul>
-        {people.map((person, i) => <Greeter key={i} name={person} />)}
-      </ul>
+      <div>
+        <ul>
+          {people.map((person, i) => <Greeter
+            key={i}
+            salutation={this.state.salutation}
+            name={person} />)}
+        </ul>
+        
+      </div>
     );
   }
 }
