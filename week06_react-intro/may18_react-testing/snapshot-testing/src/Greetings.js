@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export function Greeter({ name }) {
-  return <div><span>Hello</span> <span>{name}</span></div>;
+  return <div>Hello <span>{name}</span></div>;
 }
 
 export class Greetings extends Component {

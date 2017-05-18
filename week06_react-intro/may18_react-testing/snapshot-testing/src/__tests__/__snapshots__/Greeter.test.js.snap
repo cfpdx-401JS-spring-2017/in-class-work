@@ -1,9 +1,6 @@
 exports[`Greeter says hello 1`] = `
 <div>
-  <span>
-    Hello
-  </span>
-   
+  Hello 
   <span>
     Marty
   </span>
