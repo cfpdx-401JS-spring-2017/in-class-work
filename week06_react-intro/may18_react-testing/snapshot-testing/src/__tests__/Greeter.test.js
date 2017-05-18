@@ -1,15 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-// import { shallow } from 'enzyme';
-// import toJson from 'enzyme-to-json';
+// import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import toJSON from 'enzyme-to-json';
 
 import { Greeter, Greetings } from '../Greetings';
 
 describe('Greeter', function () {
 
     it('says hello', function () {
-      const json = renderer.create(<Greeter name="Marty"/>).toJSON();
-      expect(json).toMatchSnapshot();
+      const rendered = shallow(<Greeter name="Marty"/>);
+      expect(toJSON(rendered)).toMatchSnapshot();
     });
     
 });
@@ -17,8 +17,8 @@ describe('Greeter', function () {
 describe('Greetings', function () {
 
     it('greets all people', function () {
-      const json = renderer.create(<Greetings/>).toJSON();
-      expect(json).toMatchSnapshot();
+      const rendered = shallow(<Greetings/>);
+      expect(toJSON(rendered)).toMatchSnapshot();
     });
     
 });

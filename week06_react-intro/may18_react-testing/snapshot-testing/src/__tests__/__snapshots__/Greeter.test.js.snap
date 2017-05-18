@@ -1,6 +1,9 @@
 exports[`Greeter says hello 1`] = `
 <div>
-  Hello 
+  <span>
+    Hello
+  </span>
+   
   <span>
     Marty
   </span>
@@ -9,23 +12,11 @@ exports[`Greeter says hello 1`] = `
 
 exports[`Greetings greets all people 1`] = `
 <ul>
-  <div>
-    Hello 
-    <span>
-      Jane
-    </span>
-  </div>
-  <div>
-    Hello 
-    <span>
-      Jill
-    </span>
-  </div>
-  <div>
-    Hello 
-    <span>
-      Joey
-    </span>
-  </div>
+  <Greeter
+    name="Jane" />
+  <Greeter
+    name="Jill" />
+  <Greeter
+    name="Joey" />
 </ul>
 `;
