@@ -6,8 +6,12 @@
 * Array Holes
 * ?
 
-## Learning Objectives
+## Agenda
 
 * Use snapshot testing to test component outputs
 	* Using `react-test-renderer`
 	* Using `enzyme`
+* Testing state changes
+	* Use component API via `.instance()`
+	* Also have `.setState()` and `.setProps()`
+	* Trigger callbacks by calling function
