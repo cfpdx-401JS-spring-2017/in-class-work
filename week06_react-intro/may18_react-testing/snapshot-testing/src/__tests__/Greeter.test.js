@@ -15,6 +15,9 @@ describe('Greeter', function() {
 describe('Greetings', function() {
   it('greets all people', function() {
     const rendered = shallow(<Greetings people={['Jane', 'Jill', 'Joey']} />);
-    expect(toJSON(rendered)).toMatchSnapshot();
+		expect(toJSON(rendered)).toMatchSnapshot();
+		rendered.instance().changeSalutation();
+		rendered.update();
+		expect(toJSON(rendered)).toMatchSnapshot();
   });
 });

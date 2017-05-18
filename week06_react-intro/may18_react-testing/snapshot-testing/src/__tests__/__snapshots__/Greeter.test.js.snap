@@ -21,5 +21,31 @@ exports[`Greetings greets all people 1`] = `
       name="Joey"
       salutation="Hello" />
   </ul>
+  <button
+    onClick={[Function]}>
+    Say 
+    Goodbye
+  </button>
+</div>
+`;
+
+exports[`Greetings greets all people 2`] = `
+<div>
+  <ul>
+    <Greeter
+      name="Jane"
+      salutation="Goodbye" />
+    <Greeter
+      name="Jill"
+      salutation="Goodbye" />
+    <Greeter
+      name="Joey"
+      salutation="Goodbye" />
+  </ul>
+  <button
+    onClick={[Function]}>
+    Say 
+    Hello
+  </button>
 </div>
 `;
