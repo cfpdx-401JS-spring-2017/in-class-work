@@ -1,0 +1,23 @@
+exports[`Greeter says hello to Nicky 1`] = `
+<div>
+  Hello 
+  Nicky
+</div>
+`;
+
+exports[`Greetings says hello to people 1`] = `
+<ul>
+  <div>
+    Hello 
+    Jill
+  </div>
+  <div>
+    Hello 
+    Julie
+  </div>
+  <div>
+    Hello 
+    Jonsie
+  </div>
+</ul>
+`;
