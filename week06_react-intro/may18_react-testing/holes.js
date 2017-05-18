@@ -14,4 +14,9 @@ console.log(obj.hasOwnProperty('toString'), 'toString' in obj);
 
 // Arrays are objects with a special length property
 const arr = [1, 2, 3];
+// JavaScript array store each item under "index" property
 console.log(Object.keys(arr));
+
+// Array hole are properties (aka indexes) that are not "defined"
+const holes = [, , ,];
+console.log(Object.keys(holes), holes.length);
