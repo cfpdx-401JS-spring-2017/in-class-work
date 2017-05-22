@@ -7,7 +7,7 @@ export default class Pool extends Component {
             <div>
                 <h1>Pool</h1>
                 <p>Sun is bright, water is cool</p>
-                <button onClick={() => { } }>
+                <button onClick={() => this.props.addItem('tan')}>
                     Work on Tan
                 </button>
                 <button onClick={() => { } }>
