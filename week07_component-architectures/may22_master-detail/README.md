@@ -3,7 +3,13 @@
 
 ## Questions/Issues
 
-* Working with the new schedule (afternoon class)
+* Working with the new schedule (afternoon class):
+    * This Week:
+        * Tuesday - LAB DAY
+        * Wednesday, Thursday, and Friday, class is 9am - 12pm
+    * Weeks 7-9:
+        * Class 2pm - 5pm
+
 * ?
 
 ## Agenda
