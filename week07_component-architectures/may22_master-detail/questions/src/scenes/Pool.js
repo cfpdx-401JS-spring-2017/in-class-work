@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GoToLobby from './GoToLobby';
 
 export default class Pool extends Component {
 
@@ -12,6 +13,9 @@ export default class Pool extends Component {
                 </button>
                 <button onClick={() => { } }>
                     Take a Swim
+                </button>  
+                <button onClick={() => this.props.changeScene()}>
+                    Go Back to Lobby
                 </button>
             </div>
         );

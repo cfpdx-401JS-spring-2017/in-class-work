@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Welcome from './scenes/Welcome';
+import Lost from './scenes/Lost';
 
 class App extends Component {
   constructor() {
@@ -11,15 +12,18 @@ class App extends Component {
       CurrentScene: Welcome,
       user: {
         name: '',
+        alcohol: 0,
         items: []
       }
     };
 
     this.changeScene = this.changeScene.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.addAlcohol = this.addAlcohol.bind(this);
   }
 
   changeScene(Scene = Welcome, data) {
+    this.addAlcohol(-2);
     this.setState({ CurrentScene: Scene, data });
   }
 
@@ -28,7 +32,21 @@ class App extends Component {
     const items = user.items.slice();
     items.push(item);
     this.setState({
-      user: { name: user.name, items }
+      user: Object.assign(user, { items })
+    });
+  }
+
+  addAlcohol(alcohol) {
+    const user = this.state.user;
+    alcohol = Math.max(user.alcohol + alcohol, 0);
+
+    // if over 10, look out too much fun
+    if (alcohol > 10) {
+        this.changeScene(Lost);
+    }
+
+    this.setState({
+      user: Object.assign(user, { alcohol })
     });
   }
   
@@ -43,8 +61,9 @@ class App extends Component {
           <div>{this.state.user.items.join()}</div>
         </div>
         <CurrentScene changeScene={this.changeScene}
-          items={this.state.user.items}  
-          addItem={this.addItem}/>
+          user={this.state.user}  
+          addItem={this.addItem}  
+          addAlcohol={this.addAlcohol}/>
       </div>
     );
   }

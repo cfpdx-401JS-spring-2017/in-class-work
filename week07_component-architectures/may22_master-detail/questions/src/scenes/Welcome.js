@@ -8,6 +8,7 @@ export default class Welcome extends Component {
         return (
             <div>
                 <h1>Welcome</h1>
+                <p>Are are standing in the hotel lobby</p>
                 <button onClick={() => this.props.changeScene(Drunk)}>
                     Go to Bar
                 </button>

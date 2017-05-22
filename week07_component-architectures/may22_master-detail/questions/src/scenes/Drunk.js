@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Lost from './Lost';
 
 // hard-coded drink data
 const drinks = [
@@ -16,34 +15,25 @@ export default class Drunk extends Component {
         super(props);
         // local state for this component:
         this.state = {
-            drunk: [],
-            alcohol: 0
+            drunk: []
         };
     }   
     
     haveADrink(drink) {
         // get our props from state
-        const { drunk, alcohol } = this.state;
+        let { drunk } = this.state;
         // increase blood alcohol level based on 
         // alcohol content of selected drink
-        const newAlcohol = alcohol + drink.alcohol;
+        this.props.addAlcohol(drink.alcohol);
 
-        // if over 10, look out too much fun
-        if (newAlcohol > 10) {
-            this.props.changeScene(Lost, { drinks: drunk.length });
-        }
-        else {
-            // immutable style state change,
-            // copy the array
-            drunk = drunk.slice();
-            // push into the new copy
-            drunk.push(drink);
-            // set state with new array and new alcohol blood level:
-            this.setState({
-                drunk,
-                alcohol: newAlcohol
-            });
-        }
+        // immutable style state change,
+        // copy the array
+        drunk = drunk.slice();
+        // push into the new copy
+        drunk.push(drink);
+        // set state with new array and new alcohol blood level:
+        this.setState({ drunk });
+
     }
 
     render() {

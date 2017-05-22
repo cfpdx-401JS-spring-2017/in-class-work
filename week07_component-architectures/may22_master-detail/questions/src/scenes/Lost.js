@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Drunk from './Drunk';
 
 export default class Lost extends Component {
 
@@ -8,10 +7,9 @@ export default class Lost extends Component {
             <div>
                 <h1>Lost</h1>
                 <p>
-                    You wake up confused and unsure. Maybe you 
-                    shouldn't have had {this.props.data.drinks} drinks
+                    You wake up confused and unsure.
                 </p>
-                <button onClick={() => this.props.changeScene(Drunk)}>
+                <button onClick={() => this.props.changeScene()}>
                     Go back to Hotel Lobby
                 </button>
             </div>
