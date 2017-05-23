@@ -54,7 +54,12 @@ export default class Drunk extends Component {
                         </button>
                     ))
                 }
-                <h2>You've knocked back {drunk.length} drinks</h2>
+                <h2>You've knocked back {drunk.length} drinks
+                    {[
+                        drunk.length > 2 && <span key=">2">Wow!</span>,
+                        drunk.length > 4 && <span key=">4">OMG!</span>
+                    ]}
+                </h2>
                 <ul>
                     {drunk.map((d, i) => <li key={i}>{d.name}</li>)}
                 </ul>

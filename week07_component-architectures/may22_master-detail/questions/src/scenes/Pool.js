@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import GoToLobby from './GoToLobby';
 
 export default class Pool extends Component {
 
