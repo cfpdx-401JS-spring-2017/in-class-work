@@ -9,13 +9,15 @@
 
 * Use propTypes to assert and validate expected props
     * (defaultProps)
+* Spread Operator
 * Copy Props to State
 * Component "Mounting", `key` and changes
 * Component LifeCycle
     * mount vs props update
+* Use immutability to change data "the react way"
+* Handle env variables we don't want to check in
 * Container Components separate:
     * fetching data
     * rendering data
-* Use immutability to change data "the react way"
 
 

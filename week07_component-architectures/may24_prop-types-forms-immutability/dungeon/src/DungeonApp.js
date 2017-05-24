@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Hero from './Hero';
-// import Dungeon from './Dungeon';
+import Room from './Room';
+// import the startingRoom (is rooms[0])
+import startingRoom from './rooms';
 
 class App extends Component {
 
@@ -10,13 +12,26 @@ class App extends Component {
     const health = 100;
     
     this.state = {
+      // this is user data for display
       hero: {
         name: 'Hero',
         health,
         maxHealth: health
-      }
+      },
+      // room will track what room user is current in
+      room: startingRoom
     }
+
+    // bind this.exitRoom so we can easily pass
+    // as "callback" to change room
+    this.exitRoom = this.exitRoom.bind(this);
   }
+
+  exitRoom(room) {
+    // update current room
+    this.setState({ room });
+  }
+
   render() {
     return (
       <div>
@@ -24,8 +39,9 @@ class App extends Component {
           <h1>The Dungeon</h1>
         </header>
         <main className="dungeon">
-          <Hero hero={this.state.hero}/>
-          {/*<Dungeon />*/}
+          <Hero hero={this.state.hero} />
+          {/* pass in current room AND callback to change room */}
+          <Room room={this.state.room} onExit={this.exitRoom}/>
         </main>
       </div>  
     );

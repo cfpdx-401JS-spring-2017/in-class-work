@@ -9,7 +9,7 @@ export default class MovieApp extends Component {
     super(props);
     this.state = {
       selectedId: '',
-      search: 'Star Wars'
+      search: undefined
     }
     this.selectMovie = this.selectMovie.bind(this);
     this.setSearch = this.setSearch.bind(this);
