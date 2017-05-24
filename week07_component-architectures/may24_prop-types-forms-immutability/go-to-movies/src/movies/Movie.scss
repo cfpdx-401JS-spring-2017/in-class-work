@@ -1,0 +1,35 @@
+$width: 150px;
+$height: 250px;
+$title-height: 50px;
+
+li.movie {
+    list-style-type: none;
+    display: inline-block;
+    height: $height;
+    width: $width; 
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid #aaa;
+    margin: 5px;
+    cursor: pointer;
+
+    .poster {
+        width: $width;
+        height: $height - $title-height;
+        overflow: hidden;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .title {
+        height: $title-height;
+        font-size: 9pt;
+        font-family: sans-serif;
+        text-align: center;
+        margin: 5px;
+        margin-bottom: 0;
+    }
+}

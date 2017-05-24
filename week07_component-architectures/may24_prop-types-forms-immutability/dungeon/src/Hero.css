@@ -1,0 +1,14 @@
+.hero {
+    border: 1px solid #aaa;
+    padding: 10px;
+}
+.hero label {
+    display: block;
+}
+.hero label .value {
+    padding-left: 5px;
+    font-weight: bolder;
+}
+.hero label:not(:last-child) {
+    margin-bottom: 10px;
+}
