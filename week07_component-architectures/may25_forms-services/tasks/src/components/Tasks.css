@@ -1,0 +1,11 @@
+ul > li {
+    padding: 5px;
+}
+
+.add-task {
+    padding: 20px;
+}
+
+label {
+    display: block;
+}

@@ -1,0 +1,15 @@
+.task {
+    list-style-type: square;
+}
+
+.task.work {
+    color: blue;
+}
+
+.task.home {
+    color: green;
+}
+
+.task.play {
+    color: pink;
+}
