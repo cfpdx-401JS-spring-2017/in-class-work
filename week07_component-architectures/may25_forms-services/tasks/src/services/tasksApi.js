@@ -14,7 +14,6 @@ const tasks = [
     { _id: nextId(), name: 'teach Redux', type: '1' },
     { _id: nextId(), name: 'teach Scss', type: '1' },
     { _id: nextId(), name: 'teach Web Sockets', type: '1' },
-    { _id: nextId(), name: 'teach React', type: '1' },
     { _id: nextId(), name: 'order Pizza', type: '1' },
     { _id: nextId(), name: 'learn eucher from Tom', type: '3' }
 ];
