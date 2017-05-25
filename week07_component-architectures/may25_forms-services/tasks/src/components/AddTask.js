@@ -5,20 +5,16 @@ export default class AddTask extends Component {
   constructor(props) {
     super(props);
 
-    this.state = this.getInitialState();
-
+    this.state = {
+        name: '',
+        type: this.props.types[0]._id
+    };
+      
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getInitialState() { 
-      return {
-          name: '',
-          type: this.props.types[0]._id
-      };
-  }
-
   reset() {
-      this.setState(this.getInitialState());
+      this.setState({ name: '' });
   }  
 
   handleChange(event) {

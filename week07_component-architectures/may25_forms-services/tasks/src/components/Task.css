@@ -13,3 +13,9 @@
 .task.play {
     color: pink;
 }
+
+button.delete {
+    background: 0;
+    border: 0;
+    cursor: pointer;
+}
