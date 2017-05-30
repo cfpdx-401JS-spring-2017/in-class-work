@@ -28,13 +28,11 @@ class App extends Component {
           <div className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to React Router</h2>
-            <Nav/>
+            <Route component={Nav}/>
           </div>
           <main>
             <Switch> 
-              <Route exact path="/" render={() => {
-                return <Home foo={this.state.foo}/>;
-              }}/>
+              <Route exact path="/" component={Home}/>;
               <Route path="/stores" component={Stores}/>
               <Route path="/pets" component={Pets}/>
               <Redirect to="/foo"/>

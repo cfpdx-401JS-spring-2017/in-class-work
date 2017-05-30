@@ -37,7 +37,7 @@
     * Params
         * "Capture" parts of the url as params
         * Familiar `:id` syntax
-        * Accessible via `match.params.nameOfParam`
+        * Accessible via `match.params.id`
         * Always a `string`
     * Subroutes
         * Use `match.url`
