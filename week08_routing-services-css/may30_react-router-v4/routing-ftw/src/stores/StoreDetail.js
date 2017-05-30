@@ -44,7 +44,6 @@ export default class StoreDetail extends Component {
 
       return (
         <div>
-          <div><Link to="/stores">Back to Stores</Link></div>
           <h4>{store.name}</h4>
           <ul>
             {store.pets.map(({ _id, name }) => (
