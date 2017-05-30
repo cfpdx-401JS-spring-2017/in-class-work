@@ -30,6 +30,7 @@
         * Otherwise each Route evaluates independently
         * Don't need if alternatives are mutually exclusive
         * Can provide "default `Route` with no path
+        * Can include `Redirect`
     * `Router` rendering
         1. `component` - specify a valid `function` or `class` name
         1. `render` - supply a function
