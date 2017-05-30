@@ -34,19 +34,13 @@ export default class Stores extends Component {
       <div>
         <h2>Stores Page</h2>
         <h3>{view}</h3>
-        <Switch>
-          <Route exact path={match.url} render={() => {
-            return (
-              <ul>
-                {stores.map(store => <Store 
-                  key={store._id} {...store} 
-                  url={`${match.url}/${store._id}`}/>
-                )}
-              </ul>
-            );
-          }}/>
-          <Route path={`${match.url}/:storeId`} component={StoreDetail}/>
-        </Switch>
+        <ul>
+          {stores.map(store => <Store 
+            key={store._id} {...store} 
+            url={`${match.url}/${store._id}`}/>
+          )}
+        </ul>
+        <Route path={`${match.url}/:storeId`} component={StoreDetail}/>
       </div>
     );
   }

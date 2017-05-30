@@ -19,12 +19,22 @@ export default class StoreDetail extends Component {
 
 		componentDidMount() {
       const { params } = this.props.match;
+      this.fetchStore(params.storeId);
+		}
 
-			fetch(`/api/stores/${params.storeId}`)
+    componentWillReceiveProps(nextProps) {
+      const nextStoreId = nextProps.match.params.storeId;
+      if(nextStoreId !== this.props.match.params.storeId) {
+        this.fetchStore(nextStoreId);
+      }
+    }
+
+    fetchStore(storeId) {
+      fetch(`/api/stores/${storeId}`)
         .then(res => res.json())
         .then(store => this.setState({ store }))
         .catch(error => console.log(error));
-		}
+    }
 
 		render() {
       const { store } = this.state;
