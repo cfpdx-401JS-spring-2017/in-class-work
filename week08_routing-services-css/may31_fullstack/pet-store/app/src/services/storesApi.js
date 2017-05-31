@@ -10,7 +10,13 @@ export default {
       .then(res => res.json());
   },
   add(store) {
-
+    return fetch(API_URL, {
+      method: 'POST',
+      body: JSON.stringify(store),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      })
+    }).then(res => res.json());
   },
   remove(id) {
       

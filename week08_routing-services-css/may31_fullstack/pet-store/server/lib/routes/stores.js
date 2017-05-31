@@ -28,6 +28,7 @@ router
     })
     
     .post('/', (req, res, next) => {
+        console.log("STORE POST", req.body);
         new Store(req.body)
             .save()
             .then(store => res.send(store))

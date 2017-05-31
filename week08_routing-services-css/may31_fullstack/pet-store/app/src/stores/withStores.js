@@ -17,12 +17,21 @@ export default function withStores(ComposedComponent) {
 
     componentDidMount() {
       storesApi.getAll()
-        .then(stores => this.setState({ stores, error: null }))
-        .catch(error => this.setState({ error }));
+        .then(stores => {
+          this.setState({ stores, error: null });
+        })
+        .catch(error => {
+          this.setState({ error });
+        });
     }
 
     handleAdd(store) {
-
+      storesApi.add(store)
+        .then(saved => {
+          this.setState({
+            stores: [...this.state.stores, saved]
+          });
+        });
     }
 
     handleDelete(id, index) {
@@ -32,7 +41,7 @@ export default function withStores(ComposedComponent) {
     render() {
       const { stores, error } = this.state;
       if(!stores) return null;
-      // if(error) return <ApiError error={error}/>;
+      if(error) return <pre style={{color: 'red'}}>{error}</pre>;
 
       return <ComposedComponent {...this.props} 
         stores={stores}
