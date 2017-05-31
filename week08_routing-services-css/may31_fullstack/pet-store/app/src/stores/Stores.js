@@ -1,9 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
+import withStores from './withStores';
 import Store from './Store';
 import StoreDetail from './StoreDetail';
 
-export default function Stores({ stores, match }) {
+function Stores({ stores, match }) {
   return (
     <div>
       <h2>All Our Pet Stores</h2>
@@ -19,3 +20,5 @@ export default function Stores({ stores, match }) {
     </div>
   );
 }
+
+export default withStores(Stores);
