@@ -1,6 +1,7 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import Stores from './Stores';
 
-export default class WithStores extends Component {
+export default class StoresContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,7 +19,7 @@ export default class WithStores extends Component {
   render() {
     const { stores } = this.state;
     if(!stores) return null;
-
-    return this.props.children(stores);
+    return <Stores {...this.props} 
+      stores={stores}/>;
   }
 }
