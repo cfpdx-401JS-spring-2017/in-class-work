@@ -28,11 +28,15 @@ router
     })
     
     .post('/', (req, res, next) => {
-        console.log("STORE POST", req.body);
-        new Store(req.body)
-            .save()
+        const store = req.body;
+        Store.find({ name: store.name })
+            .count()
+            .then(count => {
+                if(count > 0) throw { code: 400, error: 'store name must be unique' };
+                return new Store(store).save();
+            })
             .then(store => res.send(store))
-            .catch(err => next(JSON.stringify(err.errors, true, 2)));
+            .catch(next);
     })
     
     .delete('/:id', (req, res) => {

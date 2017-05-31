@@ -7,8 +7,7 @@ export default function withStores(ComposedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        stores: null,
-        error: null
+        stores: null
       };
 
       this.handleAdd = this.handleAdd.bind(this);
@@ -26,7 +25,7 @@ export default function withStores(ComposedComponent) {
     }
 
     handleAdd(store) {
-      storesApi.add(store)
+      return storesApi.add(store)
         .then(saved => {
           this.setState({
             stores: [...this.state.stores, saved]
@@ -39,9 +38,8 @@ export default function withStores(ComposedComponent) {
     }
 
     render() {
-      const { stores, error } = this.state;
+      const { stores } = this.state;
       if(!stores) return null;
-      if(error) return <pre style={{color: 'red'}}>{error}</pre>;
 
       return <ComposedComponent {...this.props} 
         stores={stores}

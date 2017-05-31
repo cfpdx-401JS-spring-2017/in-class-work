@@ -5,6 +5,7 @@ import Store from './Store';
 import StoreDetail from './StoreDetail';
 import AddStore from './AddStore';
 
+
 function Stores({ stores, match, onAdd, onDelete }) {
   return (
     <div>
