@@ -27,9 +27,3 @@ main {
   text-align: left;
   padding: 20px;
 }
-
-ul.nav > li {
-  display: inline-block;
-  list-style-type: none;
-  margin: 10px;
-}
