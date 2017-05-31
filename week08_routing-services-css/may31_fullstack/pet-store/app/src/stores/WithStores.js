@@ -17,7 +17,6 @@ export default class WithStores extends Component {
 
   render() {
     const { stores } = this.state;
-    const { match } = this.props;
     if(!stores) return null;
 
     return this.props.children(stores);
