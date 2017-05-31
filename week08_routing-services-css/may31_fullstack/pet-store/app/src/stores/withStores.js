@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import storesApi from '../services/storesApi';
 
 export default function withStores(ComposedComponent) {
 
@@ -6,7 +7,8 @@ export default function withStores(ComposedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        stores: null
+        stores: null,
+        error: null
       };
 
       this.handleAdd = this.handleAdd.bind(this);
@@ -14,10 +16,9 @@ export default function withStores(ComposedComponent) {
     }
 
     componentDidMount() {
-      fetch('/api/stores')
-        .then(res => res.json())
-        .then(stores => this.setState({ stores }))
-        .catch(error => console.log(error));
+      storesApi.getAll()
+        .then(stores => this.setState({ stores, error: null }))
+        .catch(error => this.setState({ error }));
     }
 
     handleAdd(store) {
@@ -29,8 +30,10 @@ export default function withStores(ComposedComponent) {
     }
 
     render() {
-      const { stores } = this.state;
+      const { stores, error } = this.state;
       if(!stores) return null;
+      // if(error) return <ApiError error={error}/>;
+
       return <ComposedComponent {...this.props} 
         stores={stores}
         onAdd={this.handleAdd}

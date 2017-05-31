@@ -8,8 +8,8 @@ import {
 
 import Header from './header/Header';
 import Home from './home/Home';
-import Stores from './stores/Stores';
-import Pets from './pets/Pets';
+import Stores from '../stores/Stores';
+import Pets from '../pets/Pets';
 
 import './App.css';
 
@@ -24,7 +24,7 @@ class App extends Component {
             {/*<Switch> === new Switch()*/}
             <Switch> 
               <Route exact path="/" component={Home}/>;
-              <Route path="/stores" render={Stores}/>
+              <Route path="/stores" component={Stores}/>
               <Route path="/pets" component={Pets}/>
               <Redirect to="/"/>
             </Switch>

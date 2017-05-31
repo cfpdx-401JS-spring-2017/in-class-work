@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Home.css';
 
 function Marquee(props) {
-  console.log('CHILDREN', props.children);
   return (
     <div className="marquee">
       <p>
