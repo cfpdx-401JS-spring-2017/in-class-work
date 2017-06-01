@@ -1,4 +1,5 @@
-// "Service" module that wraps data calls to server
+// "Service" module that wraps data calls to server.
+// Components don't have to know about http, ajax, .json(), etc.
 
 // general root url for stores api
 const API_URL = '/api/stores';

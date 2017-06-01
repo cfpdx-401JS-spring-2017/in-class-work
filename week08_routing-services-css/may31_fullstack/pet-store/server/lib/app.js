@@ -16,11 +16,11 @@ app.use('/api/pets', pets);
 app.use('/api/stores', stores);
 app.use('/api/toys', toys);
 
-// app.use((req, res) => {
-//     res.sendFile('index.html', {
-//         root: './public/',
-//     });
-// });
+app.use((req, res) => {
+    res.sendFile('index.html', {
+        root: './public/',
+    });
+});
 
 app.use(errorHandler());
 
