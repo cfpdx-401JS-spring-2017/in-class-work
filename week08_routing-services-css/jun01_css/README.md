@@ -23,6 +23,7 @@
 * What about scoping?
     * this is the big challenge/800lb gorilla
     * [eject?](https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2)
+    * [CSS Modules FTW!](https://glenmaddern.com/articles/css-modules)
 * What about css in js?
     * [styled components](https://www.styled-components.com/) FTW!
     * [getting started](https://github.com/kitze/create-react-app-styled-components)
