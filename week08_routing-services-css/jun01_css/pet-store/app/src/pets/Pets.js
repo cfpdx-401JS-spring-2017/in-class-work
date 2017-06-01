@@ -23,7 +23,7 @@ export default class Pets extends Component {
     const { pets } = this.state;
 
     return (
-      <div>
+      <div className="pets">
         <h2>All Our Pets</h2>
         <table>
           <thead>

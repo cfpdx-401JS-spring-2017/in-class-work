@@ -1,7 +1,10 @@
-table {
+.pets {
+  color: blue; }
+  .pets table {
     width: 90%;
-}
-
-.pet-detail {
-    margin-top: 30px;
-}
+    color: #aaa; }
+    .pets table:hover {
+      color: steelblue;
+      cursor: pointer; }
+  .pets .pet-detail {
+    margin-top: 20px; }

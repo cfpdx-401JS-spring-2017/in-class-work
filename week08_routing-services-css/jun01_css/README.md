@@ -10,8 +10,12 @@
 * CSS in a Component world
     * per-component css
 * scss (sass) 
-    * [setup](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc)(
-        * we loose hot reloading :(
+    * [setup](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-preprocessor-sass-less-etc)
+        
+        * ~~we loose hot reloading :(~~
+        * use VSCode settings to not show css files
+        * remember, you still import the `.css` file in the component
+        
     * nesting FTW!
     * variables
     * importing

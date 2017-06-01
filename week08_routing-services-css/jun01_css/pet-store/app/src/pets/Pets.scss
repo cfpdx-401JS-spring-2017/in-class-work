@@ -1,0 +1,22 @@
+@import "../scss/colors";
+
+$margin: 30px;
+$offset: 10px;
+
+.pets {
+    color: $main;
+
+    table {
+        width: 90%;
+        color: #aaa;
+
+        &:hover {
+            color: steelblue;
+            cursor: pointer;
+        }
+    }
+
+    .pet-detail {
+        margin-top: $margin - $offset;
+    }
+}
