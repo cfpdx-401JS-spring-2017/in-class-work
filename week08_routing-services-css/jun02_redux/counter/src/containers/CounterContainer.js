@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import * as actions from '../actions/counter.actions';
-import { increment, decrement } from '../actions/counter.actions';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions/counter.actions';
 import Counter from '../components/Counter';
 
 // what props do we want our component (the one being wrapped, aka counter)
@@ -12,25 +11,25 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators(actions, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
 
 
 // be default, dispatch get directly passed to the component.
 // But that is very broad, the component could dipatch **anything**.
 // So, we limit what props (functions) we want our component (the one being wrapped, aka counter)
 // to actually be able to call
-function mapDispatchToProps(dispatch) {
-  return {
-    increment() {
-      dispatch(increment());
-    },
-    decrement() {
-      dispatch(decrement());
-    }
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     increment() {
+//       dispatch(increment());
+//     },
+//     decrement() {
+//       dispatch(decrement());
+//     }
+//   };
+// }
 
 
 // pass the options to the connection function.

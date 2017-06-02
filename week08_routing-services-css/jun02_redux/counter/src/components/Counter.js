@@ -1,5 +1,7 @@
 import React from 'react';
 
+// this is a stateless function, just renders the view, no state
+
 export default function Counter({ count, increment, decrement }) {
   return (
     <div>
