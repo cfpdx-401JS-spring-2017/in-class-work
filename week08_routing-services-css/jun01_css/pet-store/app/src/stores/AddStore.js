@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Input } from '../common/Table';
 
 export default class AddStore extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ export default class AddStore extends Component {
           .catch(error => this.setState(error));
       }}>
         { error && <pre style={{color: 'red'}}>{error}</pre> }
-        <input name="name" value={store.name} onChange={this.handleChange}/>
+        <Input placeholder="Add a Store" name="name" value={store.name} onChange={this.handleChange}/>
         <button type="submit">Add</button>
 
       </form>

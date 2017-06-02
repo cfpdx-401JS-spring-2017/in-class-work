@@ -1,10 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+  color: turquoise;
+  &:hover {
+    color: lightgreen;
+  }
+`;
+
 
 const NavItem = ({ name, to }) => (
   <li>
-    <Link to={to}>{name}</Link>
+    <StyledLink to={to}>{name}</StyledLink>
   </li>
 );
 

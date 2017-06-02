@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import './Pets.css';
+// import './Pets.css';
 import PetDetail from './PetDetail';
+import { Table } from '../common/Table';
 
 export default class Pets extends Component {
   constructor(props) {
@@ -22,10 +23,12 @@ export default class Pets extends Component {
     const { match } = this.props;
     const { pets } = this.state;
 
+    
+
     return (
       <div className="pets">
         <h2>All Our Pets</h2>
-        <table>
+        <Table background="cornflowerblue">
           <thead>
             <tr>
               <td>Name</td><td>Legs</td><td>Store</td>
@@ -39,7 +42,7 @@ export default class Pets extends Component {
                 {...pet}/>
             )}
           </tbody>
-        </table>
+        </Table>
         <section className="pet-detail">
           <Route path={`${match.url}/:petId`} render={({ match }) => {
             return <PetDetail petId={match.params.petId}/>;

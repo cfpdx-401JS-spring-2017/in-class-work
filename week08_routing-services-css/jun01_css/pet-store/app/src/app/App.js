@@ -13,12 +13,18 @@ import Pets from '../pets/Pets';
 
 import './App.css';
 
+import styled from 'styled-components';
+
+const Main = styled.div`
+  text-align: center;
+`;
+
 class App extends Component {
   
   render() {
     return (
       <Router>
-        <div className="App">
+        <Main>
           <Header/>
           <main>
             {/*<Switch> === new Switch()*/}
@@ -29,7 +35,7 @@ class App extends Component {
               <Redirect to="/"/>
             </Switch>
           </main>
-        </div>
+        </Main>
       </Router>
     );
   }

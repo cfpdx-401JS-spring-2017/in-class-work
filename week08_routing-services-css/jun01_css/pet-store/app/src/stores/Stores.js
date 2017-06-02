@@ -4,6 +4,17 @@ import withStores from './withStores';
 import Store from './Store';
 import StoreDetail from './StoreDetail';
 import AddStore from './AddStore';
+import styled, { css } from 'styled-components';
+
+const paddedPink = css`
+  color: pink;
+  padding: 5px;
+`;
+
+const StyledStore = styled(Store)`
+  ${paddedPink}
+  font-size: 20px;
+`;
 
 // Stores is a stateless component. Only renders stores,
 // doesn't know about stores data that comes via props
@@ -18,7 +29,7 @@ function Stores({ stores, match, onAdd, onDelete }) {
       <h2>All Our Pet Stores</h2>
       <ul>
         {stores.map(store => 
-          <Store 
+          <StyledStore 
             key={store._id} 
             to={`${match.url}/${store._id}`}
             {...store}/>

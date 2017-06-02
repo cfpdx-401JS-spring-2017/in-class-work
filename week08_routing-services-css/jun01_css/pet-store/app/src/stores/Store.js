@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Store({ name, to }) {
+export default function Store({ name, to, className }) {
   return (
-    <li><Link to={to}>{name}</Link></li>   
+    <li className={className}><Link className={className} to={to}>{name}</Link></li>   
   );
 }
