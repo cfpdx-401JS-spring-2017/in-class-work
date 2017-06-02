@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function Counter({ increment, decrement, count }) {
-    return (
-        <div>
-            Current counter value: {count}
-            <div><button onClick={(e) => increment()}>Increment</button></div>
-            <div><button onClick={(e) => decrement()}>Decrement</button></div>
-        </div>
-    );
+export default class Counter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { amount: 1 }
+    }
+
+    render() {
+        const { increment, decrement, count } = this.props;
+        const { amount } = this.state;
+        return (
+            <div>
+                Current counter value: {count}
+                <div><button onClick={(e) => increment(amount)}>Increment</button></div>
+                <div><button onClick={(e) => decrement(amount)}>Decrement</button></div>
+                <div>
+                    <input type="range" min="1" max="5"
+                        value={amount}
+                        onChange={({ target }) => this.setState({ amount: +target.value })}/>
+                    { amount }
+                </div>
+
+            </div>
+        );
+    }
 }
