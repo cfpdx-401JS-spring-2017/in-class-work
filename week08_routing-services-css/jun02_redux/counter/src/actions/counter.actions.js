@@ -1,13 +1,15 @@
 import { INCREMENT, DECREMENT } from '../constants/counter.const';
 
-export function increment() {
+export function increment(amount = 1) {
   return {
-    type: INCREMENT
+    type: INCREMENT,
+    amount
   };
 }
 
-export function decrement() {
+export function decrement(amount = 1) {
   return {
-    type: DECREMENT
+    type: DECREMENT,
+    amount
   };
 }

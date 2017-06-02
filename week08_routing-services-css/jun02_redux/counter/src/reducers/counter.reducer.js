@@ -1,11 +1,11 @@
 import { INCREMENT, DECREMENT } from '../constants/counter.const';
 
-export default function CounterApp(state = 0, action) {
-  switch(action.type) {
+export default function CounterApp(state = 0, { type, amount }) {
+  switch(type) {
     case INCREMENT:
-      return state + 1;
+      return state + amount;
     case DECREMENT:
-      return state - 1;
+      return state - amount;
     default:
       return state;
   }
