@@ -3,8 +3,16 @@ import { createStore } from 'redux';
 // reducer
 function albumsReducer(state, action) {
     // do something with add album
-    
-    return state;
+  switch(action.type) {
+    case 'ADD_ALBUM':
+      return [...state, action.payload];
+    case 'REMOVE_ALBUM': {
+      const index = state.findIndex(a => a === action.payload);
+      return [...state.slice(0, index), ...state.slice(index + 1)];
+    }
+    default:
+      return state;
+  }
 }
 
 // Use createStore to create a redux "store"
@@ -21,7 +29,6 @@ store.subscribe(() => {
 });
 
 // 3. store.dispatch(action)
-store.dispatch({
-  type: 'ADD_ALBUM',
-  name: 'Cute Lizards'
-});
+store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Lizards' });
+store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Guinea Pigs' });
+store.dispatch({ type: 'REMOVE_ALBUM', payload: 'Cute Lizards' });
