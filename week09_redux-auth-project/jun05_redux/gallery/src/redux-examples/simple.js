@@ -5,11 +5,26 @@ function albumsReducer(state, action) {
     // do something with add album
   switch(action.type) {
     case 'ADD_ALBUM':
-      return [...state, action.payload];
+      return { 
+        ...state, 
+        albums: [...state.albums, action.payload]
+      };
     case 'REMOVE_ALBUM': {
-      const index = state.findIndex(a => a === action.payload);
-      return [...state.slice(0, index), ...state.slice(index + 1)];
+      const { albums } = state;
+      const index = albums.findIndex(a => a === action.payload);
+      if(index === -1) {
+        return {
+          ...state,
+          albumsError: `Cannot remove non-existant album ${action.payload}`
+        };
+      }
+      return {
+        ...state,
+        albums: [...albums.slice(0, index), ...albums.slice(index + 1)]
+      };
     }
+    case 'CLEAR_ERROR':
+      return { ...state, albumsError: null };
     default:
       return state;
   }
@@ -18,7 +33,10 @@ function albumsReducer(state, action) {
 // Use createStore to create a redux "store"
 const store = createStore(
   albumsReducer,
-  [ 'Cute Bunnies' ]
+  {
+    albums: [ 'Cute Bunnies' ],
+    albumsError: null
+  }
 );
 
 // "Store" API
@@ -31,4 +49,6 @@ store.subscribe(() => {
 // 3. store.dispatch(action)
 store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Lizards' });
 store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Guinea Pigs' });
+store.dispatch({ type: 'REMOVE_ALBUM', payload: 'Cute Nothings' });
 store.dispatch({ type: 'REMOVE_ALBUM', payload: 'Cute Lizards' });
+store.dispatch({ type: 'CLEAR_ERROR' });
