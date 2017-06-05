@@ -1,42 +1,44 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-// reducer
-function albumsReducer(state, action) {
-    // do something with add album
+// albums reducer (state is just "albums" key of store)
+function albumsReducer(state = [], action) {
   switch(action.type) {
     case 'ADD_ALBUM':
-      return { 
-        ...state, 
-        albums: [...state.albums, action.payload]
-      };
+      return [...state, action.payload];
     case 'REMOVE_ALBUM': {
-      const { albums } = state;
-      const index = albums.findIndex(a => a === action.payload);
-      if(index === -1) {
-        return {
-          ...state,
-          albumsError: `Cannot remove non-existent album ${action.payload}`
-        };
-      }
-      return {
-        ...state,
-        albums: [...albums.slice(0, index), ...albums.slice(index + 1)]
-      };
+      const index = state.findIndex(a => a === action.payload);
+      return [...state.slice(0, index), ...state.slice(index + 1)];
     }
-    case 'CLEAR_ERROR':
-      return { ...state, albumsError: null };
     default:
       return state;
   }
 }
 
+const initialState = {
+  views: ['Gallery', 'List', 'Thumbnail'],
+  view: 'Gallery'
+};
+
+function viewsReducer(state = initialState, action) {
+  switch(action.type) {
+    case 'CHANGE_VIEW':
+      return { 
+        ...state, 
+        view: action.payload
+      };
+    default:
+      return state;
+  }
+}
+
+const reducers = combineReducers({
+  albums: albumsReducer,
+  views: viewsReducer,
+});
+
 // Use createStore to create a redux "store"
 const store = createStore(
-  albumsReducer,
-  {
-    albums: [ 'Cute Bunnies' ],
-    albumsError: null
-  }
+  reducers
 );
 
 // "Store" API
@@ -48,7 +50,5 @@ store.subscribe(() => {
 
 // 3. store.dispatch(action)
 store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Lizards' });
-store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Guinea Pigs' });
-store.dispatch({ type: 'REMOVE_ALBUM', payload: 'Cute Nothings' });
-store.dispatch({ type: 'REMOVE_ALBUM', payload: 'Cute Lizards' });
-store.dispatch({ type: 'CLEAR_ERROR' });
+store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Bunnies' });
+store.dispatch({ type: 'CHANGE_VIEW', payload: 'Thumbnail' });
