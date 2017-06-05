@@ -1,52 +1,77 @@
 /* eslint no-console: off */
 import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+
 
 // albums reducer
 function albumsReducer(state = [], action) {
   switch(action.type) {
+    case 'FETCHING_ALBUMS':
+      return { ...state, loading: true };
+    case 'FETCHED_ALBUMS':
+      return { ...state, albums: action.payload, loading: false };
+    case 'FETCHED_ALBUMS_ERROR':
+      return { ...state, loading: false, error: action.payload };
     case 'ADD_ALBUM':
-      return [...state, action.payload];
+      return [...state.albums, action.payload];
     case 'REMOVE_ALBUM': {
-      const index = state.findIndex(a => a === action.payload);
-      return [...state.slice(0, index), ...state.slice(index + 1)];
+      const index = state.albums.findIndex(a => a === action.payload);
+      return [...state.albums.slice(0, index), ...state.albums.slice(index + 1)];
     }
     default:
       return state;
   }
 }
 
-const logger = store => next => action => {
-  console.log('action', action);
-
-  console.log('state before dispatch', store.getState());
-
-  const returnValue = next(action);
-  //typically, returnValue this is just the action
-
-  console.log('state after dispatch', store.getState());
-
-  return returnValue;
-};
-
 
 // Use createStore to create a redux "store"
 const store = createStore(
   albumsReducer, // root reducer
-  [], // initial state
+  {
+    albums: [],
+    loading: false,
+    error: null,
+  }, // initial state
   // middlewares
   applyMiddleware(
-      logger
+      logger,
+      thunk
   )
 );
 
-// // "Store" API
-// // 1. store.subscribe(listener) -> listens for changes to the state of the store
-// store.subscribe(() => {
-//   // 2. store.getState() -> returns the current state of the store
-//   console.log('SUBSCRIBE', store.getState());
-// });
 
-// 3. store.dispatch(action)
-store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Lizards' });
+const api = {
+  getAlbums() {
+    //fetch('/api/albums').then(res => res.json())
+    // return Promise.resolve([
+    //   { id: '123', title: 'album one' },
+    //   { id: '234', title: 'album two' },
+    //   { id: '456', title: 'album three' },
+    // ]);
+    
+    return Promise.reject('OMG!');
+  }
+};
+
+//thunk style action
+const getAlbums = dispatch => {
+  dispatch({ type: 'FETCHING_ALBUMS' });
+  
+  api.getAlbums()
+    .then(albums => {
+      dispatch({ type: 'FETCHED_ALBUMS', payload: albums });
+    })
+    .catch(error => {
+      dispatch({ type: 'FETCHED_ALBUMS_ERROR', payload: error });
+    });
+};
+
+// pass in a FUNCTION, not an object as our action.
+// because we added thunk middleware, our function will be called with dispatch
+store.dispatch(getAlbums);
+
+// // 3. store.dispatch(action)
+// store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Lizards' });
 // store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Guinea Pigs' });
 // store.dispatch({ type: 'REMOVE_ALBUM', payload: 'Cute Lizards' });
