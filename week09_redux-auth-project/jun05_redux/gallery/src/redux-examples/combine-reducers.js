@@ -14,18 +14,20 @@ function albumsReducer(state = [], action) {
   }
 }
 
-const initialState = {
-  views: ['Gallery', 'List', 'Thumbnail'],
-  view: 'Gallery'
-};
-
-function viewsReducer(state = initialState, action) {
+function viewReducer(state = 'Gallery', action) {
   switch(action.type) {
     case 'CHANGE_VIEW':
-      return { 
-        ...state, 
-        view: action.payload
-      };
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+function selectedAlbumReducer(state = {}, action) {
+  switch(action.type) {
+    case 'SELECT_ALBUM': 
+    case 'ADD_ALBUM':
+      return action.payload;
     default:
       return state;
   }
@@ -33,12 +35,17 @@ function viewsReducer(state = initialState, action) {
 
 const reducers = combineReducers({
   albums: albumsReducer,
-  views: viewsReducer,
+  selected: selectedAlbumReducer,
+  view: viewReducer,
 });
 
 // Use createStore to create a redux "store"
 const store = createStore(
-  reducers
+  reducers,
+  {
+    albums: ['Cute Turtles'],
+    view: 'Gallery'
+  }
 );
 
 // "Store" API
@@ -52,3 +59,4 @@ store.subscribe(() => {
 store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Lizards' });
 store.dispatch({ type: 'ADD_ALBUM', payload: 'Cute Bunnies' });
 store.dispatch({ type: 'CHANGE_VIEW', payload: 'Thumbnail' });
+store.dispatch({ type: 'SELECT_ALBUM', payload: 'Cute Lizards' });
