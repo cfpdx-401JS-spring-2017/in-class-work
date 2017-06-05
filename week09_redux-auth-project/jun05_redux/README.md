@@ -109,7 +109,7 @@ Three levels of "functions":
 1. function that takes each action (`action`)
     
 * `logger` example
-* `thunk` middleware is the answer for async!
+* [`thunk` middleware](https://github.com/gaearon/redux-thunk) is the answer for async!
     * Allows us to specify a function `dispatch => {}` as an action
     * That function gets called with dispatch and then we can do 
     multiple calls at multiple times
