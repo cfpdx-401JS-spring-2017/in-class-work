@@ -15,24 +15,18 @@ function albumsReducer(state = [], action) {
   }
 }
 
-function logger(store) {
+const logger = store => next => action => {
+  console.log('action', action);
 
-  return function middleware(next) {
+  console.log('state before dispatch', store.getState());
 
-    return function(action) {
-      console.log('action', action);
+  const returnValue = next(action);
+  //typically, returnValue this is just the action
 
-      console.log('state before dispatch', store.getState());
+  console.log('state after dispatch', store.getState());
 
-      const returnValue = next(action);
-      //typically, returnValue this is just the action
-
-      console.log('state after dispatch', store.getState());
-
-      return returnValue;
-    };
-  };
-}
+  return returnValue;
+};
 
 
 // Use createStore to create a redux "store"
