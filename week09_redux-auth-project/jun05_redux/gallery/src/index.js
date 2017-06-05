@@ -5,7 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 
-import './redux-examples/simple-middleware';
+import './redux-examples/thunk-middleware';
 
 
 
