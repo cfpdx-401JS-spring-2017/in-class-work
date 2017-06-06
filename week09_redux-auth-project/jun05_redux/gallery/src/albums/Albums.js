@@ -1,8 +1,10 @@
 import React from 'react';
+import AddAlbum from './AddAlbum';
 
 export default function Albums({ albums, loading, error }) {
+
   if(loading) return <div>Loading...</div>;
-  console.log("ERROR", error);
+
   return (
     <div>
       <ul>
@@ -11,7 +13,7 @@ export default function Albums({ albums, loading, error }) {
         ))}
       </ul>
       {error && <pre style={{ color: 'red' }}>{error}</pre>}
-      {/*{add album will go here}*/}
+      <AddAlbum/>
     </div>
   );
 }

@@ -1,8 +1,11 @@
-import * as actions from '../constants/albums.const';
+import * as actions from './constants';
 import api from '../api/albumsApi';
 
+// action creator called "getAlbums"
 export function getAlbums() {
 
+  // it "creates" an action that is a function,
+  // meaning it will get called back with dispatch
   return dispatch => {
     dispatch({ type: actions.FETCHING_ALBUMS });
     
@@ -18,6 +21,7 @@ export function getAlbums() {
 }
 
 export function addAlbum(album) {
+
   return dispatch => {
     dispatch({ type: actions.ADDING_ALBUM });
     

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import AlbumsContainer from './containers/AlbumsContainer';
+import AlbumsContainer from './albums/AlbumsContainer';
 
 class App extends Component {
   render() {

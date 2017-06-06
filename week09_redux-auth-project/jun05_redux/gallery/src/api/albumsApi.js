@@ -14,6 +14,10 @@ export default {
     return axios.get(`${API_URL}/${id}`);
   },
   add(album) {
-    return axios.post(API_URL, album);
+    return axios.post(API_URL, album)
+      .then(r => r.data)
+      .catch(err => {
+        throw err.response.data;
+      });
   }
 };

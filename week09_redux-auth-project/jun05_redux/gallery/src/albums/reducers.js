@@ -1,4 +1,4 @@
-import * as actions from '../constants/albums.const';
+import * as actions from './constants';
 
 export function albums(state = [], action) {
   switch(action.type) {
