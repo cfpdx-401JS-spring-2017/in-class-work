@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import people from './people';
 
-const reducers = (state, action) => {
+export const reducers = (state, action) => {
   switch(action.type) {
     case 'CHANGE_SORT': {
       const by = action.payload;
@@ -17,8 +17,9 @@ const reducers = (state, action) => {
             return -a.name.localeCompare(b);
           });
           break;
+        default:
       } 
-      return { ...state, sortedPeople }
+      return { ...state, sortedPeople, sort: by }
     }
     case 'SELECT_PERSON': {
       return { ...state, person: action.payload };
