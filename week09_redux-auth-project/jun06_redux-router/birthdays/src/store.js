@@ -14,7 +14,7 @@ const reducers = (state, action) => {
           break;
         case 'name':
           sortedPeople.sort((a, b) => {
-            return a.name.localeCompare(b);
+            return -a.name.localeCompare(b);
           });
           break;
       } 
@@ -23,7 +23,8 @@ const reducers = (state, action) => {
     case 'SELECT_PERSON': {
       return { ...state, person: action.payload };
     }
-
+    default: 
+      return state;
   }
 };
 
