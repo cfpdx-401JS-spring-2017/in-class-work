@@ -14,7 +14,9 @@ export const reducers = (state, action) => {
           break;
         case 'name':
           sortedPeople.sort((a, b) => {
-            return -a.name.localeCompare(b);
+            if (a.name === b.name) return 0;
+            if (a.name < b.name) return -1;
+            return 1;
           });
           break;
         default:
