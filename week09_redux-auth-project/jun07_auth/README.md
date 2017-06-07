@@ -19,5 +19,9 @@ Steps:
       * `user` - track the logged in user
       * `token` - track our token
       * `userError` - an errors in the auth process
-    * Added `actions` (based on what we came up with in reducers)
+    * Added `constants` (based on what we came up with in reducers)
     * Added tests for `reducers`
+    * Added `actions`
+      * async actions based on authenticating and getting user
+      * `verify`, `signin`, `signup`, `signout`
+    * Add some Routing logic and signin form

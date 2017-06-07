@@ -1,17 +1,10 @@
 import * as actions from './constants';
 import authApi from '../api/authApi';
+import { getStoredToken } from '../api/request';
 
-const getUser = (promise, dispatch) => promise.then(() => authApi.getUser())
-  .then(user => {
-    dispatch({ type: actions.FETCHED_USER, payload: user });
-  })
-  .catch(error => {
-    dispatch({ type: actions.AUTH_FAILED });
-  });
-  
 export function checkForToken() {
   return dispatch => {
-    const token = localStorage.token;
+    const token = getStoredToken();
     if(!token) return;
 
     dispatch({ type: actions.GOT_TOKEN, payload: token });
@@ -57,4 +50,8 @@ export function signup(user) {
         dispatch({ type: actions.AUTH_FAILED });
       });
   };
+}
+
+export function signout() {
+  return { type: actions.LOGOUT };
 }

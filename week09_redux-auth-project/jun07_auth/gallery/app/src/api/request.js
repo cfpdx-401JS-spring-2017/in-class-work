@@ -7,9 +7,11 @@ store.subscribe(() => {
   const { token: newToken } = store.getState();
   if(newToken !== token) {
     token = newToken;
-    // token ? localStorage.token = token : localStorage.clear('token');
+    token ? localStorage.token = token : localStorage.clear('token');
   }
 });
+
+export const getStoredToken = () => localStorage.token;
 
 export const API_URL = '/api';
 
