@@ -15,4 +15,9 @@ Steps:
 * App
   * Store
     * Add user, userError state to the store
-    * Reducers for auth workflows
+    * Reducers for auth workflows:
+      * `user` - track the logged in user
+      * `token` - track our token
+      * `userError` - an errors in the auth process
+    * Added `actions` (based on what we came up with in reducers)
+    * Added tests for `reducers`
