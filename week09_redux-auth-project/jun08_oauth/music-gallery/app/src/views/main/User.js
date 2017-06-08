@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { userFromToken } from './actions';
 import styled from 'styled-components';
 
 const CenteredDiv = styled.div`
@@ -32,7 +31,6 @@ export default withRouter(connect(
     user: state.user 
   }),
   dispatch => ({ 
-    fromToken(token) { dispatch(userFromToken(token)); },
     spotify(userId) { 
       window.location = `/api/auth/spotify/login?userId=${userId}&origin=${window.location}`; 
     } 
