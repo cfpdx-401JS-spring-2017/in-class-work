@@ -7,7 +7,7 @@ export function signout() {
   return { type: actions.LOGOUT };
 }
 
-export function userFromToken(token) {
+export function loadUserFrom(token) {
   return dispatch => {
 
     dispatch({ type: actions.GOT_TOKEN, payload: token });
@@ -27,7 +27,7 @@ export function checkForToken() {
   return dispatch => {
     const token = getStoredToken();
     if(!token) return;
-    userFromToken(token)(dispatch);
+    loadUserFrom(token)(dispatch);
   };
 }
 

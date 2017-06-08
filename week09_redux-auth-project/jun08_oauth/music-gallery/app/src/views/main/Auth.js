@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signin, signup, userFromToken } from './actions';
+import { signin, signup, loadUserFrom } from './actions';
 import styled from 'styled-components';
 import Credentials from './Credentials';
 import qs from 'qs';
@@ -17,13 +17,13 @@ const Error = styled.pre`
   text-align: left;
 `;
 
-function Auth({ user, signin, signup, fromToken, spotify, error, location }) {
+function Auth({ user, signin, signup, loadUserFrom, spotify, error, location }) {
   const redirect = location.state ? location.state.from : '/';
 
   if(location.search) {
     const { token } = qs.parse(location.search.slice(1));
     if(token) {
-      fromToken(token);
+      loadUserFrom(token);
       return <Redirect to={redirect}/>;
     }
   }
@@ -62,7 +62,7 @@ export default withRouter(connect(
   dispatch => ({ 
     signup(user){ dispatch(signup(user)); },
     signin(credentials) { dispatch(signin(credentials)); },
-    fromToken(token) { dispatch(userFromToken(token)); },
+    loadUserFrom(token) { dispatch(loadUserFrom(token)); },
     spotify() { window.location = `/api/auth/spotify/login?origin=${window.location}`; } 
   })
 )(Auth));
