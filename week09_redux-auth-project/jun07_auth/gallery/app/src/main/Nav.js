@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import { signout } from './actions';
+import { connect } from 'react-redux';
+import { signout } from './actions';
 import styled from 'styled-components';
 
 const NavList = styled.ul`
@@ -17,27 +17,26 @@ const NavItem = styled.li`
 
 const NavLink = props => <Link style={{ color: 'white' }} {...props}/>;
 
-export default function Nav({ user, signout }) {
+function Nav({ user, signout }) {
   return (
     <nav>
       <NavList>
         <NavItem><NavLink to="/">Home</NavLink></NavItem>
         <NavItem><NavLink to="/albums">Albums</NavLink></NavItem>
-        {/*<NavItem>
+        <NavItem>
           { user 
             ? <NavLink to="/" onClick={signout}>Logout</NavLink>
             : <NavLink to="/auth/signin">Login</NavLink>
           }
-        </NavItem>*/}
+        </NavItem>
       </NavList>
     </nav>
   );
 }
 
-
-// export default connect(
-//   state => ({ user: state.user }),
-//   dispatch => ({ 
-//     signout() { dispatch(signout()); }
-//   })
-// )(Nav);
+export default connect(
+  state => ({ user: state.user }),
+  dispatch => ({ 
+    signout() { dispatch(signout()); }
+  })
+)(Nav);

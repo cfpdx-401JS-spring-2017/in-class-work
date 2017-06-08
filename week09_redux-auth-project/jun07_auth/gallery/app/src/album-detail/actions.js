@@ -11,7 +11,7 @@ export function getAlbum(id) {
         albums => {
           dispatch({ type: actions.FETCHED_ALBUM, payload: albums });
         },
-        ({ error }) => {
+        error => {
           dispatch({ type: actions.FETCHED_ALBUM_ERROR, payload: error });
         }
       );
@@ -31,7 +31,7 @@ export function addImage(image) {
         saved => {
           dispatch({ type: actions.ADDED_IMAGE, payload: saved });
         },
-        ({ error }) => {
+        error => {
           dispatch({ type: actions.ADDED_IMAGE_ERROR, payload: error });
         }
       );
@@ -50,7 +50,7 @@ export function removeImage(imageId) {
         () => {
           dispatch({ type: actions.REMOVED_IMAGE, payload: imageId });
         },
-        ({ error }) => {
+        error => {
           dispatch({ type: actions.REMOVED_IMAGE_ERROR, payload: error });
         }
       );

@@ -11,21 +11,23 @@ import './App.css';
 
 import Home from './main/Home';
 import Nav from './main/Nav';
-// import Auth from './main/Auth';
+import Auth from './main/Auth';
 import Albums from './albums/AlbumsContainer';
 import AlbumDetail from './album-detail/AlbumDetailContainer';
 
-// import { connect } from 'react-redux';
-// import { checkForToken } from './main/actions';
+import { connect } from 'react-redux';
+import { checkForToken } from './main/actions';
 
+import PrivateRoute from './PrivateRoute';
 
 class App extends Component {
-  // componentDidMount() {
-  //   this.props.checkForToken();
-  // }
+  componentDidMount() {
+    this.props.checkForToken();
+  }
 
   render() {
     const { user } = this.props;
+    
     return (
       <Router>
         <div className="App">
@@ -35,10 +37,10 @@ class App extends Component {
           </div>
           <main>
             <Switch> 
-              <Route exact path="/" render={() => <Home user={user}/>}/>;
-              {/*<Route path="/auth" render={() => user ? <Redirect to="/"/> : <Auth/>}/>;*/}
-              <Route exact path="/albums" render={() => <Albums/>}/>;
-              <Route path="/albums/:id" render={({ match }) => <AlbumDetail id={match.params.id}/>}/>;
+              <Route exact path="/" render={() => <Home/>}/>;
+              <Route path="/auth" render={() => <Auth/>}/>
+              <PrivateRoute exact path="/albums" render={() => <Albums/>}/>;
+              <PrivateRoute path="/albums/:id" render={({ match }) => <AlbumDetail id={match.params.id}/>}/>;
               <Redirect to="/"/>
             </Switch>
           </main>
@@ -48,10 +50,9 @@ class App extends Component {
   }
 }
 
-export default App;
-// export default connect(
-//   state => ({ user: state.user }),
-//   dispatch => ({ 
-//     checkForToken() { dispatch(checkForToken()); }  
-//   })
-// )(App);
+export default connect(
+  state => ({ user: state.user }),
+  dispatch => ({ 
+    checkForToken() { dispatch(checkForToken()); }  
+  })
+)(App);

@@ -24,8 +24,8 @@ if(process.env.NODE_ENV !== 'production') {
     app.use(checkDb);
 }
 app.use('/api/auth', auth);
-// app.use('/api/me', ensureAuth, me);
-// app.use('/api/albums', ensureAuth, album);
+app.use('/api/me', ensureAuth, me);
+app.use('/api/albums', ensureAuth, album);
 app.use('/api/me', me);
 app.use('/api/albums', album);
 

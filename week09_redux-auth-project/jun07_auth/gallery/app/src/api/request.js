@@ -3,15 +3,17 @@ import superagent from 'superagent';
 
 let token = '';
 
+const storage = sessionStorage;
+
 store.subscribe(() => {
   const { token: newToken } = store.getState();
   if(newToken !== token) {
     token = newToken;
-    token ? localStorage.token = token : localStorage.clear('token');
+    token ? storage.token = token : storage.clear('token');
   }
 });
 
-export const getStoredToken = () => localStorage.token;
+export const getStoredToken = () => storage.token;
 
 export const API_URL = '/api';
 
@@ -20,7 +22,8 @@ const wrap = cmd => cmd
   .then(
     r => r.body,
     ({ response }) => {
-      throw response.body;
+      // TODO: test for token error, dispatch AUTH_FAILED action
+      throw response.body.error;
     }
   );
 

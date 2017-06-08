@@ -15,7 +15,7 @@ export function checkForToken() {
         dispatch({ type: actions.FETCHED_USER, payload: user });
       })
       .catch(error => {
-        dispatch({ type: actions.AUTH_FAILED });
+        dispatch({ type: actions.AUTH_FAILED, payload: error });
       });
   };
 }
@@ -31,7 +31,7 @@ export function signin(credentials) {
         dispatch({ type: actions.FETCHED_USER, payload: user });
       })
       .catch(error => {
-        dispatch({ type: actions.AUTH_FAILED });
+        dispatch({ type: actions.AUTH_FAILED, payload: error });
       });
   };
 }
@@ -47,7 +47,7 @@ export function signup(user) {
         dispatch({ type: actions.FETCHED_USER, payload: user });
       })
       .catch(error => {
-        dispatch({ type: actions.AUTH_FAILED });
+        dispatch({ type: actions.AUTH_FAILED, payload: error });
       });
   };
 }

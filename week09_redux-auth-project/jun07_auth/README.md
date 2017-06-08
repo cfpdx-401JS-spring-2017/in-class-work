@@ -25,3 +25,4 @@ Steps:
       * async actions based on authenticating and getting user
       * `verify`, `signin`, `signup`, `signout`
     * Add some Routing logic and signin form
+    * Add new reducers to root reducer

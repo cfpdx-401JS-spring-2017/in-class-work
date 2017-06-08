@@ -10,7 +10,7 @@ export function getAlbums() {
       .then(albums => {
         dispatch({ type: actions.FETCHED_ALBUMS, payload: albums });
       })
-      .catch(({ error }) => {
+      .catch(error => {
         dispatch({ type: actions.FETCHED_ALBUMS_ERROR, payload: error });
       });
   };
@@ -26,7 +26,7 @@ export function addAlbum(album) {
       .then(saved => {
         dispatch({ type: actions.ADDED_ALBUM, payload: saved });
       })
-      .catch(({ error }) => {
+      .catch(error => {
         dispatch({ type: actions.ADDED_ALBUM_ERROR, payload: error });
       });
   };
@@ -41,7 +41,7 @@ export function removeAlbum(albumId) {
       .then(() => {
         dispatch({ type: actions.REMOVED_ALBUM, payload: albumId });
       })
-      .catch(({ error }) => {
+      .catch(error => {
         dispatch({ type: actions.REMOVED_ALBUM_ERROR, payload: error });
       });
   };
