@@ -2,7 +2,6 @@ const Router = require('express').Router;
 const router = Router();
 // const bodyParser = require('body-parser').json();
 const spotifyApi = require('../../api/spotify');
-const readAuth = require('../../auth/read-auth')();
 const cookieParser = require('cookie-parser')();
 const tokenService = require('../../auth/token-service');
 const User = require('../../models/user');
@@ -27,7 +26,7 @@ router
      * Redirect the client to the spotify authorize url, but first set that user's
      * state in the cookie.
      */
-    .get('/login', cookieParser, readAuth, (req, res) => {
+    .get('/login', cookieParser, (req, res) => {
         const state = generateRandomString(16);
         res.cookie(STATE_KEY, state);
         const { userId, origin } = req.query;
@@ -54,6 +53,8 @@ router
         res.clearCookie(STATE_KEY);
         const userId = req.cookies[USER_ID_KEY];
         const origin = req.cookies[ORIGIN_KEY];
+        res.clearCookie(USER_ID_KEY);
+        res.clearCookie(ORIGIN_KEY);
     
         // Retrieve an access token and a refresh token
         spotifyApi.authorizationCodeGrant(code)
@@ -69,6 +70,7 @@ router
             })
             .then(([user, spotifyUser]) => {
                 if(user) {
+                    // TODO: check that spotify.id matches
                     if(user.spotify) return user;
                     user.spotify = spotifyUser;
                     return user.save();

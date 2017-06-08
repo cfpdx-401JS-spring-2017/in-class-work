@@ -48,7 +48,7 @@ function Auth({ user, signin, signup, fromToken, spotify, error, location }) {
         </Switch>
         {error && <Error>{ error }</Error>}
         <CenteredDiv>
-          <button onClick={spotify}>Sign in with Spotify</button>
+          <button onClick={() => spotify()}>Sign in with Spotify</button>
         </CenteredDiv>
     </CenteredDiv>
   );

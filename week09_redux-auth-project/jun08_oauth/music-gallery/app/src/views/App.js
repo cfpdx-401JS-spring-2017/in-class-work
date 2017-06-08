@@ -13,6 +13,7 @@ import Home from './main/Home';
 import Nav from './main/Nav';
 import Auth from './main/Auth';
 import User from './main/User';
+import Music from './music/Music';
 import Albums from './albums/AlbumsContainer';
 import AlbumDetail from './album-detail/AlbumDetailContainer';
 
@@ -33,6 +34,7 @@ const Routes = (
     <Route exact path="/" render={() => <Home/>}/>;
     <Route path="/auth" render={() => <Auth/>}/>
     <PrivateRoute exact path="/albums" render={() => <Albums/>}/>;
+    <PrivateRoute exact path="/music" render={() => <Music/>}/>;
     <PrivateRoute path="/user" render={() => <User/>}/>;
     <PrivateRoute path="/albums/:id" render={({ match }) => <AlbumDetail id={match.params.id}/>}/>;
     <Route path="/error" render={() => <div>Oh no, OAuth error</div>}/>

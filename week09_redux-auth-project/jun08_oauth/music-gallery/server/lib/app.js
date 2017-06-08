@@ -19,6 +19,7 @@ app.use(express.static('./public'));
 const auth = require('./routes/auth/auth');
 const me = require('./routes/me');
 const album = require('./routes/albums');
+const music = require('./routes/music');
 
 if(process.env.NODE_ENV !== 'production') {
     app.use(checkDb);
@@ -31,8 +32,8 @@ app.get('/api/special', (req, res) => {
 app.use('/api/auth', auth);
 app.use('/api/me', ensureAuth, me);
 app.use('/api/albums', ensureAuth, album);
+app.use('/api/music', ensureAuth, music);
 app.use('/api/me', me);
-app.use('/api/albums', album);
 
 // TODO: add handler for server request with path, like: /albums
 
