@@ -2,13 +2,16 @@ import * as actions from './constants';
 import authApi from '../../api/authApi';
 import { getStoredToken } from '../../api/request';
 
-export function checkForToken() {
+
+export function signout() {
+  return { type: actions.LOGOUT };
+}
+
+export function userFromToken(token) {
   return dispatch => {
-    const token = getStoredToken();
-    if(!token) return;
 
     dispatch({ type: actions.GOT_TOKEN, payload: token });
-
+    
     authApi.verify()
       .then(() => authApi.getUser())
       .then(user => {
@@ -17,6 +20,14 @@ export function checkForToken() {
       .catch(error => {
         dispatch({ type: actions.AUTH_FAILED, payload: error });
       });
+  };
+}
+
+export function checkForToken() {
+  return dispatch => {
+    const token = getStoredToken();
+    if(!token) return;
+    userFromToken(token)(dispatch);
   };
 }
 
@@ -50,8 +61,4 @@ export function signup(user) {
         dispatch({ type: actions.AUTH_FAILED, payload: error });
       });
   };
-}
-
-export function signout() {
-  return { type: actions.LOGOUT };
 }

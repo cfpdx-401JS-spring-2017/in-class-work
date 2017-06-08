@@ -30,8 +30,9 @@ router
     .get('/login', cookieParser, readAuth, (req, res) => {
         const state = generateRandomString(16);
         res.cookie(STATE_KEY, state);
-        if(req.user) res.cookie(USER_ID_KEY, req.user.id);
-        if(req.query.origin) res.cookie(ORIGIN_KEY, req.query.origin);
+        const { userId, origin } = req.query;
+        if(userId) res.cookie(USER_ID_KEY, userId);
+        if(origin) res.cookie(ORIGIN_KEY, origin);
         res.redirect(spotifyApi.createAuthorizeURL(scopes, state));
     })
 

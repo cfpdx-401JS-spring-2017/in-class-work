@@ -12,6 +12,7 @@ import './App.css';
 import Home from './main/Home';
 import Nav from './main/Nav';
 import Auth from './main/Auth';
+import User from './main/User';
 import Albums from './albums/AlbumsContainer';
 import AlbumDetail from './album-detail/AlbumDetailContainer';
 
@@ -32,6 +33,7 @@ const Routes = (
     <Route exact path="/" render={() => <Home/>}/>;
     <Route path="/auth" render={() => <Auth/>}/>
     <PrivateRoute exact path="/albums" render={() => <Albums/>}/>;
+    <PrivateRoute path="/user" render={() => <User/>}/>;
     <PrivateRoute path="/albums/:id" render={({ match }) => <AlbumDetail id={match.params.id}/>}/>;
     <Route path="/error" render={() => <div>Oh no, OAuth error</div>}/>
     <Redirect to="/"/>
@@ -41,10 +43,6 @@ const Routes = (
 class App extends Component {
   componentDidMount() {
     this.props.checkForToken();
-  }
-
-  gotoSpecial() {
-    window.location = `/api/auth/spotify/login?origin=${window.location}`;
   }
 
   render() {
@@ -58,7 +56,6 @@ class App extends Component {
             </main>
           </div>
         </Router>
-        <button onClick={() => this.gotoSpecial()}>Special</button>
       </div>
     );
   }

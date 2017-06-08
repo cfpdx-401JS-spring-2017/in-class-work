@@ -6,7 +6,7 @@ const User = require('../models/user');
 router
     .get('/', (req, res, next) => {
         User.findById(req.user.id)
-          .select('name favorites')
+          .select('name favorites spotify.id')
           .lean()
           .then(user => res.send(user))
           .catch(next);

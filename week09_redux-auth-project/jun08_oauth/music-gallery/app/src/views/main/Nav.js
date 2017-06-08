@@ -23,6 +23,7 @@ function Nav({ user, signout }) {
       <NavList>
         <NavItem><NavLink to="/">Home</NavLink></NavItem>
         <NavItem><NavLink to="/albums">Albums</NavLink></NavItem>
+        {user && <NavItem><NavLink to="/user">My Account</NavLink></NavItem>}
         <NavItem>
           { user 
             ? <NavLink to="/" onClick={signout}>Logout</NavLink>

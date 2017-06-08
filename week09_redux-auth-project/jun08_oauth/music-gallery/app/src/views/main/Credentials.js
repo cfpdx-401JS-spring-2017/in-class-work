@@ -11,7 +11,7 @@ const Form = styled.form`
   }
 `;
 
-export default ({ submit, allowName = false }) => (
+export default ({ submit, callToAction, allowName = false }) => (
   <Form onSubmit={e => {
     e.preventDefault();
     const { elements } = e.target;
@@ -24,6 +24,6 @@ export default ({ submit, allowName = false }) => (
     { allowName && <label>name: <input name="name"/></label>}
     <label>email: <input name="email"/></label>
     <label>password: <input type="password" name="password"/></label>
-    <button>Log In</button>
+    <button>{callToAction}</button>
   </Form>
 );
