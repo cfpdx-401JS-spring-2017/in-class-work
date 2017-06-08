@@ -20,29 +20,35 @@ import { checkForToken } from './main/actions';
 
 import PrivateRoute from './PrivateRoute';
 
+const Header = (
+  <div className="App-header">
+    <img src={logo} className="App-logo" alt="logo" />
+    <Nav/>
+  </div>
+);
+
+const Routes = (
+  <Switch> 
+    <Route exact path="/" render={() => <Home/>}/>;
+    <Route path="/auth" render={() => <Auth/>}/>
+    <PrivateRoute exact path="/albums" render={() => <Albums/>}/>;
+    <PrivateRoute path="/albums/:id" render={({ match }) => <AlbumDetail id={match.params.id}/>}/>;
+    <Redirect to="/"/>
+  </Switch>  
+);
+
 class App extends Component {
   componentDidMount() {
     this.props.checkForToken();
   }
 
   render() {
-    const { user } = this.props;
-    
     return (
       <Router>
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <Nav/>
-          </div>
+          {Header}
           <main>
-            <Switch> 
-              <Route exact path="/" render={() => <Home/>}/>;
-              <Route path="/auth" render={() => <Auth/>}/>
-              <PrivateRoute exact path="/albums" render={() => <Albums/>}/>;
-              <PrivateRoute path="/albums/:id" render={({ match }) => <AlbumDetail id={match.params.id}/>}/>;
-              <Redirect to="/"/>
-            </Switch>
+            {Routes}
           </main>
         </div>
       </Router>
